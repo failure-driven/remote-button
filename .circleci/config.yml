@@ -65,13 +65,13 @@ jobs:
 
       # Pre test
 
-      - run: yarn lint
+      # - run: yarn lint
 
       - run: bundle exec rubocop --config .rubocop.yml
 
       # Run the tests
-      - run: yarn test
+      # - run: yarn test
 
-      - run: bundle exec rspec spec/{controllers,api_acceptance}/
+      # - run: bundle exec rspec spec/{controllers,api_acceptance}/
 
-      - run: bundle exec rspec spec/features
+      - run: bundle exec rspec spec
