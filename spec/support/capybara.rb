@@ -31,7 +31,7 @@ Capybara.register_driver :selenium_chrome do |app|
   end
 end
 
-Capybara.javascript_driver = :selenium_chrome
+Capybara.javascript_driver = :selenium_chrome unless ENV.fetch("NOT_CHROME", false)
 
 Capybara::Screenshot.webkit_options = {
   width: 1024,
