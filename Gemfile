@@ -31,6 +31,24 @@ gem "bootsnap", ">= 1.4.2", require: false
 # Adding for consistent Ruby styling
 gem "rubocop"
 
+group :test do
+  gem "database_cleaner"
+
+  gem "rspec-example_steps"
+  gem "rspec-rails"
+  gem "rspec-wait"
+
+  gem "capybara", ">= 3.14"
+  gem "capybara-screenshot"
+  gem "selenium-webdriver"
+  gem "webdrivers", "~> 3.0"
+
+  gem "pry"
+  gem "pry-byebug"
+  gem "pry-rails"
+  gem "pry-stack_explorer"
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]

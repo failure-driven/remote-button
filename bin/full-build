@@ -6,3 +6,5 @@ bundle install
 yarn
 
 bundle exec rubocop
+
+bundle exec rspec
