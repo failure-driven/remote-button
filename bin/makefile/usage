@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -e
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+NC='\033[0m'
+
+_usage() {
+  echo
+  echo -e "Hi $(whoami)!"
+  echo
+  echo -e "${GREEN}Workflow${NC}"
+  echo
+  echo -e "${YELLOW}make build${NC}         run linting and full build"
+  echo
+  echo -e "${GREEN}Deploy to Heroku${NC}"
+  echo
+  echo -e "${YELLOW}make deploy${NC}        assuming access to 'config/master.key' deploy to Heroku"
+}
+_usage
