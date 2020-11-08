@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/remote-button
     docker:
-      - image: circleci/ruby:2.6.2-stretch-node-browsers
+      - image: circleci/ruby:2.7.1-buster-node-browsers
         environment:
           PGHOST: localhost
           PGUSER: your-app-name
@@ -27,7 +27,7 @@ jobs:
         key: your-app-name-{{ checksum "Gemfile.lock" }}
 
       # install specific bundler
-      - run: gem install bundler -v 2.0.1
+      - run: gem install bundler -v 2.1.4
 
       # Bundle install dependencies
       - run: bundle install --path vendor/bundle
