@@ -5,8 +5,8 @@ module PageFragments
   end
 
   module DelegateSynchronize
-    def synchronize(*selector_args, &block)
-      page.document.synchronize(*selector_args, &block)
+    def synchronize(...)
+      page.document.synchronize(...)
     end
   end
 
