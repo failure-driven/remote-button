@@ -2,8 +2,8 @@ PROJECT := remote-button
 
 default: usage
 usage:
- bin/makefile/usage
+	bin/makefile/usage
 
 .PHONY: build
 build:
- bin/full-build
+	bin/full-build
