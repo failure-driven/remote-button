@@ -1,0 +1,75 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/remote-button
+    docker:
+      - image: circleci/ruby:2.6.2-stretch-node-browsers
+        environment:
+          PGHOST: localhost
+          PGUSER: your-app-name
+          RAILS_ENV: test
+      - image: postgres:9.5
+        environment:
+          POSTGRES_USER: your-app-name
+          POSTGRES_DB: your-app-name_test
+          POSTGRES_PASSWORD: ""
+          POSTGRES_HOST_AUTH_METHOD: trust
+    steps:
+      - checkout
+
+      - run:
+          name: Check current version of node
+          command: node -v
+
+      # Restore Cached Dependencies
+      - type: cache-restore
+        name: Restore bundle cache
+        key: your-app-name-{{ checksum "Gemfile.lock" }}
+
+      # install specific bundler
+      - run: gem install bundler -v 2.0.1
+
+      # Bundle install dependencies
+      - run: bundle install --path vendor/bundle
+
+      # Cache Dependencies
+      - type: cache-save
+        name: Store bundle cache
+        key: your-app-name-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+
+      # Only necessary if app uses webpacker or yarn in some other way
+      - restore_cache:
+          keys:
+            - rails-demo-yarn-{{ checksum "yarn.lock" }}
+            - rails-demo-yarn-
+
+      - run:
+          name: Yarn Install
+          command: yarn install --cache-folder ~/.cache/yarn
+
+      # Store yarn / webpacker cache
+      - save_cache:
+          key: rails-demo-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+      # Wait for DB
+      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      # Setup the database
+      - run: bundle exec rake db:setup
+
+      # Pre test
+
+      - run: yarn lint
+
+      - run: bundle exec rubocop --config .rubocop.yml
+
+      # Run the tests
+      - run: yarn test
+
+      - run: bundle exec rspec spec/{controllers,api_acceptance}/
+
+      - run: bundle exec rspec spec/features
