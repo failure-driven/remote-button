@@ -1,5 +1,8 @@
 <h1>Software Button</h1>
 
-<div class="form-group">
-  email <input type="email">
-</div
+<%= form_for @button, url: software_buttons_path do |f| %>
+  <div class="form-group">
+  <%= f.label :email %>
+  <%= f.text_field :email, class: "form-control" %>
+  </div>
+<% end %>

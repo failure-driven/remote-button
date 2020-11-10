@@ -5,8 +5,8 @@ feature "Register Button and view results from pressing it", js: true do
     When "Sam registers a software button" do
       visit new_software_button_path
 
-      pending "an acutal form on that page"
-      fill_in "email", with: "sam@button.com"
+      fill_in "Email", with: "sam@button.com"
+      pending "add site field on the form"
       fill_in "site", with: "http://localhost:<capybara port>"
       fill_in "SSID", with: "home-ssid"
       fill_in "password", with: "home-ap-password"
