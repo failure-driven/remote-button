@@ -1,0 +1,2 @@
+class SoftwareButtonsController < ApplicationController
+end
