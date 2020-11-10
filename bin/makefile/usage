@@ -13,7 +13,9 @@ _usage() {
   echo
   echo -e "${GREEN}Workflow${NC}"
   echo
-  echo -e "${YELLOW}make build${NC}         run linting and full build"
+  echo -e "${YELLOW}make prettier_ruby${NC}   rubocop any modified files"
+  echo -e "${YELLOW}make rubocop_fix_all${NC} rubocop and auto-correct all files"
+  echo -e "${YELLOW}make build${NC}           run linting and full build"
   echo
   echo -e "${GREEN}Deploy to Heroku${NC}"
   echo
