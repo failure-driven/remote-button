@@ -7,7 +7,11 @@ feature "Register Button and view results from pressing it", js: true do
 
       fill_in "Email", with: "sam@button.com"
       pending "add site field on the form"
-      fill_in "site", with: "http://localhost:<capybara port>"
+      current_host_and_port = URI::HTTP.build(
+        host: Capybara.current_session.server.host,
+        port: Capybara.current_session.server.port,
+      )
+      fill_in "site", with: current_host_and_port
       fill_in "SSID", with: "home-ssid"
       fill_in "password", with: "home-ap-password"
 
