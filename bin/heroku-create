@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+set -eu
+
+heroku whoami
+
+echo "Create heroku app (unless it already exists)"
+heroku apps:create "$HEROKU_APP_NAME" --no-remote || echo "app already exists"
+
+echo "Add git remote for heroku"
+git remote rm heroku || echo "heroku remote did not exist"
+git remote add heroku "https://git.heroku.com/$HEROKU_APP_NAME.git"
+
+echo "Adding ruby build pack"
+heroku buildpacks
+heroku buildpacks:remove heroku/ruby || echo "ruby buildpack already removed"
+heroku buildpacks:add --index 2 heroku/ruby
+
+# changing db scale will NOT automatically scale heroku - this requires clickops
+#echo "Adding heroku-postgres addon (unless it already exists)"
+#(heroku addons | grep heroku-postgresql) || heroku addons:create heroku-postgresql:"$DB_SCALE"
+
+#echo "Adding heroku-redis addon (unless it already exists)"
+# changing redis scale will NOT automatically scale heroku - this requires clickops
+#(heroku addons | grep heroku-redis) || heroku addons:create heroku-redis:"$REDIS_SCALE"
+
+# Note that we are just automating the addition of the heroku scheduler addon.
+# It is currently _not_ possible to automate the actual scheduling of jobs so we need to do that
+# by loading the HEROKU_API_KEY locally and running `heroku addons:open scheduler` for the
+# heroku app for each environment (and adding any scheduled tasks manually in the heroku scheduler web ui).
+#(heroku addons | grep scheduler) || heroku addons:create scheduler:standard
+
+#echo "Adding loggly drain (unless it already exists)"
+#heroku drains:add "$LOGGLY_DRAIN_BASE_URL/tag/$HEROKU_APP_NAME" || echo "drain added"
+
+echo "Updating heroku environment variables"
+# NOTE if you delete or rename variables here, you will need to remember to delete the old variables
+# from Heroku after deployment. Otherwise the old variables will hang around in Heroku.
+heroku config:add \
+  RAILS_MASTER_KEY="$RAILS_MASTER_KEY" \
+  > /dev/null
+
+echo "Performing heroku deployment"
+#git push -f -q "https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git" "$(git rev-parse HEAD):refs/heads/main"
+git push --force heroku main
+
+echo "Performing database migrations"
+heroku run --exit-code bin/rake db:migrate
+
+# changing web scale will automatically scale heroku web servers out/up
+#echo "Scaling web and worker process types"
+#heroku ps:scale \
+#  web="$WEB_SCALE" \
+#  publish_invoice_document="$WORKER_SCALE" \
+#  > /dev/null
+
+echo "Performing process restart"
+heroku ps:restart
+
+echo "Deployment completed"

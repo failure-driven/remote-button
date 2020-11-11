@@ -13,3 +13,9 @@ prettier_ruby:
 .PHONY: build
 build:
 	bin/full-build
+
+.PHONY: deploy
+deploy:
+	RAILS_MASTER_KEY=`cat config/master.key` \
+		HEROKU_APP_NAME=stg-remote-button      \
+		bin/heroku-create
