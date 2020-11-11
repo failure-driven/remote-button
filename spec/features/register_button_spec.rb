@@ -6,15 +6,15 @@ feature "Register Button and view results from pressing it", js: true do
       visit new_software_button_path
 
       fill_in "Email", with: "sam@button.com"
-      pending "add site field on the form"
       current_host_and_port = URI::HTTP.build(
         host: Capybara.current_session.server.host,
         port: Capybara.current_session.server.port,
       )
-      fill_in "site", with: current_host_and_port
-      fill_in "SSID", with: "home-ssid"
-      fill_in "password", with: "home-ap-password"
-
+      fill_in "Site", with: current_host_and_port
+      # fill_in "SSID", with: "home-ssid"
+      # fill_in "password", with: "home-ap-password"
+      fill_in "External reference", with: "default_external_reference"
+      # pending "add register button to the form"
       click_on "register"
 
       # binding.pry # uncomment this to pause the test prior to a failure
@@ -51,5 +51,5 @@ feature "Register Button and view results from pressing it", js: true do
     # < page 1, 2, 3 ...n >
   end
 
-  scenario "User resigers a button which is already registerd"
+  scenario "User registers a button which is already registerd"
 end
