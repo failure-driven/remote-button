@@ -3,7 +3,7 @@ require "rails_helper"
 feature "It works", js: true do
   scenario "I have rails" do
     When "user visits the app" do
-      visit root_path
+      visit test_root_rails_path
     end
 
     Then "user sees they are on rails" do

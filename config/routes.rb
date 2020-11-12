@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   resources :software_buttons, only: %i[new create]
 
-  root to: "rails/welcome#index"
+  get "test_root", to: "rails/welcome#index", as: "test_root_rails"
+  root to: "home#index"
 end
