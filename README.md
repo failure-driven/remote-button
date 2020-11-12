@@ -22,6 +22,27 @@ open http://localhost:3000
 - [./TODO.md](./TODO.md)
 - [./USER_STORIES.md](./USER_STORIES.md)
 
+## Arduino/ESP32
+
+Arduino for familiarity but ESP32 in reality as needs WiFi.
+
+[arduino_button/arduino_button.ino](arduino_button/arduino_button.ino)
+
+can connect via serial monitor or
+
+```
+screen /dev/cu.SLAB_USBtoUART 115200
+```
+
+**Note:** _exit screen typing `CTRL-A CTRL-\`_
+
+and on reset be told the mac address of the attached ESP32
+
+```
+Remote Button
+mac address: 7C:9E:BD:07:43:F4
+```
+
 ## Docker
 
 somewhat experimental ...
