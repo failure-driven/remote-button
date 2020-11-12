@@ -1,0 +1,74 @@
+version: '3'
+
+services:
+
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+      - "4000:4000"
+    depends_on:
+      - webpack_dev_server
+      - database
+    volumes:
+      - .:/usr/src/app
+      - gem_cache:/gems
+      - packs:/usr/src/app/public/packs
+    env_file:
+      - .env/development/web
+      - .env/development/database
+    environment:
+      - SELENIUM_REMOTE_URL=http://webdriver_chrome:5900/wd/hub
+      - WEBPACK_DEV_SERVER_HOST=webpack-dev-sever
+    networks:
+      - back
+
+  webpack_dev_server:
+    build: .
+    # TODO: switched to `bin/webpack` as that matches the fingerprint on the
+    # webpacked filed that is expected by rails. The dev-server generates a
+    # different finger print. This also means there will be no reloading, just
+    # run once.
+    #
+    # command: ./bin/webpack-dev-server
+    command: ./bin/webpack
+    ports:
+      - "3035:3035"
+    volumes:
+      - .:/usr/src/app
+      - gem_cache:/gems
+      - packs:/usr/src/app/public/packs
+    env_file:
+      - .env/development/web
+      - .env/development/database
+    environment:
+      - WEBPACK_DEV_SERVER_HOST=0.0.0.0
+
+  # redis:
+  #   image: redis
+
+  database:
+    image: postgres
+    env_file:
+      - .env/development/database
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - back
+
+  webdriver_chrome:
+    image: selenium/standalone-chrome-debug
+    logging:
+      driver: none
+    ports:
+      - "5900:5900"
+    networks:
+      - back
+
+networks:
+  back:
+
+volumes:
+  db_data:
+  gem_cache:
+  packs:
