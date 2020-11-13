@@ -53,7 +53,20 @@ feature "Register Button and view results from pressing it", js: true do
 
   scenario "User registers a button which is already registerd"
 
-  scenario "User attempts to register a button with invalid input" do
+  scenario "Hardware button sends invalid registration request" do
+    When "a hardware button makes a HTTP POST to register itself" do
+      uri = URI(Capybara.current_session.server.base_url)
+      @response = Net::HTTP.post_form(uri, {})
+    end
+
+    Then "I get a json resonse with error and status 422 unprocessable entity" do
+      pending "an actual 422 response"
+      wait_for { @response.code }.to eq "422"
+      wait_for { JSON.parse(@response.body) }.to eq({ "error" => "email can't be blank, site can't be blank" })
+    end
+  end
+
+  scenario "User attempts to register software a button with invalid input" do
     When "Sam registers a software button not filling in anything" do
       visit new_software_button_path
       click_on "register"
