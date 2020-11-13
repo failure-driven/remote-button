@@ -52,4 +52,17 @@ feature "Register Button and view results from pressing it", js: true do
   end
 
   scenario "User registers a button which is already registerd"
+
+  scenario "User attempts to register a button with invalid input" do
+    When "Sam registers a software button not filling in anything" do
+      visit new_software_button_path
+      click_on "register"
+    end
+
+    Then "he is show validation errors" do
+      wait_for do
+        page.find(".alert [data-testid=\"message\"]").text
+      end.to eq "Creating button is currently not implemented"
+    end
+  end
 end

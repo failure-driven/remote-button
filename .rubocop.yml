@@ -19,6 +19,9 @@ Layout/LineLength:
     - config/**/*
     - features/support/env.rb
 
+Metrics/MethodLength:
+  Enabled: false
+
 Metrics/BlockLength:
   Enabled: false
 
