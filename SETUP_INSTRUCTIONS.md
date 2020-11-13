@@ -275,7 +275,7 @@ Check a CI build
     # as per
     open https://github.com/saramic/real-code-runner/commit/f5af59dd90ad69c461374ca76ab44c99c0f02656
 
-    rails generate migrate EnablePgcryptoExtension
+    rails generate migration EnablePgcryptoExtension
 
       class EnablePgcryptoExtension < ActiveRecord::Migration[6.0]
         def change
