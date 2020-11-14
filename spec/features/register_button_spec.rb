@@ -60,9 +60,12 @@ feature "Register Button and view results from pressing it", js: true do
     end
 
     Then "I get a json resonse with error and status 422 unprocessable entity" do
-      pending "an actual 422 response"
       wait_for { @response.code }.to eq "422"
-      wait_for { JSON.parse(@response.body) }.to eq({ "error" => "email can't be blank, site can't be blank" })
+      wait_for { JSON.parse(@response.body) }.to eq(
+        {
+          "error" => "Validation failed: Email can't be blank, Site can't be blank",
+        },
+      )
     end
   end
 
