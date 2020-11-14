@@ -63,7 +63,28 @@ feature "Register Button and view results from pressing it", js: true do
       wait_for { @response.code }.to eq "422"
       wait_for { JSON.parse(@response.body) }.to eq(
         {
-          "error" => "Validation failed: Email can't be blank, Site can't be blank",
+          "error" => "Validation failed: Email can't be blank, Site can't be blank, External reference can't be blank",
+        },
+      )
+    end
+  end
+
+  scenario "Hardware button sends valid registration request" do
+    When "a hardware button makes a HTTP POST to register itself" do
+      uri = URI(Capybara.current_session.server.base_url)
+      @response = Net::HTTP.post_form(
+        uri,
+        { "button[email]" => "m@m",
+          "button[site]" => Capybara.current_session.server.base_url,
+          "button[external_reference]" => "1234", },
+      )
+    end
+
+    Then "I get a json response with success and status 201 successfully created" do
+      wait_for { @response.code }.to eq "201"
+      wait_for { JSON.parse(@response.body) }.to eq(
+        {
+          "button_url" => "#{Capybara.current_session.server.base_url}/buttons/#{Button.first.id}",
         },
       )
     end

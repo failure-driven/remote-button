@@ -1,3 +1,3 @@
 class Button < ApplicationRecord
-  validates :email, :site, presence: true
+  validates :email, :site, :external_reference, presence: true
 end
