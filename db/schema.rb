@@ -13,10 +13,9 @@
 ActiveRecord::Schema.define(version: 2020_11_14_044345) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "buttons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "buttons", force: :cascade do |t|
     t.string "email", null: false
     t.string "site", null: false
     t.string "external_reference", null: false
@@ -24,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_11_14_044345) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "events", force: :cascade do |t|
     t.uuid "button_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
