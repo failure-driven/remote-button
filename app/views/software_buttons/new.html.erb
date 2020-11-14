@@ -1,6 +1,6 @@
 <h1>Software Button</h1>
 
-<%= form_for @button, url: software_button_path do |f| %>
+<%= form_with model: @button, url: software_button_path do |f| %>
   <div class="form-group">
     <%= f.label :email %>
     <%= f.text_field :email, class: "form-control" %>
@@ -19,7 +19,7 @@
     <%= f.text_field :password, class: "form-control" %>
   </div>
 
-  <%= f.button(
+  <%= f.submit(
     :register,
     class: "btn btn-primary form-control",
     data: {

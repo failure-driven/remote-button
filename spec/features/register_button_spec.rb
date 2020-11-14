@@ -23,7 +23,6 @@ feature "Register Button and view results from pressing it", js: true do
     end
 
     Then "Sam sees a success message and recievs an email with the link" do
-      pending "a success message"
       wait_for do
         page.find(".alert [data-testid=\"message\"]").text
       end.to eq "Software button successfully created."
@@ -63,7 +62,7 @@ feature "Register Button and view results from pressing it", js: true do
   scenario "Software button registration fails with no email" do
     When "Sam tries to register a button but does not enter an email" do
       visit new_software_button_path
-      fill_in "Email", with: "sam@button.com"
+      fill_in "Email", with: ""
       fill_in "Site", with: Capybara.current_session.server.base_url
       fill_in "SSID", with: "home-ssid"
       fill_in "Password", with: "home-ap-password"
@@ -71,7 +70,6 @@ feature "Register Button and view results from pressing it", js: true do
     end
 
     Then "Sam sees the error message fro the registration" do
-      pending "getting a validation error from actual registration"
       wait_for do
         page.find(".alert [data-testid=\"message\"]").text
       end.to eq "Validation failed: Email can't be blank"
@@ -124,7 +122,7 @@ feature "Register Button and view results from pressing it", js: true do
     Then "he is show validation errors" do
       wait_for do
         page.find(".alert [data-testid=\"message\"]").text
-      end.to eq "Creating button is currently not implemented"
+      end.to eq "not an HTTP URI"
     end
   end
 end
