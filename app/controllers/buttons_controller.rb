@@ -9,6 +9,20 @@ class ButtonsController < ApplicationController
     render json: { error: e.message }, status: :unprocessable_entity
   end
 
+  def show
+    @button = Button.find(params[:id])
+  end
+  
+  def event
+    @button = Button.find(params[:id])
+    @button.events.create
+  end
+
+  def events
+    @button = Button.find(params[:id])
+    @events = @button.events
+  end
+
   private
 
   def button_params

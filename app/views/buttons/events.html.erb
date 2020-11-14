@@ -1,0 +1,17 @@
+<h1>Events for <%= @button.external_reference %></h1>
+
+<ul class="list-group">
+<% @events.each_with_index do |event, index| %>
+  <li class="list-group-item">
+  <div class="row">
+  <div class="col-2">
+  <%= index %>
+  </div>
+  <div class="col-6">
+  <%= event.created_at %>
+  </div>
+    </div>
+  </li>
+<% end %>
+</ul>
+

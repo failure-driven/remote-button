@@ -19,10 +19,15 @@ feature "Register Button and view results from pressing it", js: true do
 
       # binding.pry # uncomment this to pause the test prior to a failure
     end
+    
+    Then "Sam is on the button page"
+    #   visit new_software_button_path
+    # end
 
     Then "He sees a success message and recievs an email with the link"
     # you get an email with a link
     # http://localhost/button/uuid-code-here
+
 
     When "he follows the link from the email and completes registration of his button"
     # code: unique-button-mac-address-identifier

@@ -1,0 +1,8 @@
+<h1><%= @button.external_reference %></h1>
+
+<%= form_with method: "POST", model: @button, url: event_button_path do |f| %>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to "events", events_button_path(@button) %>
+
