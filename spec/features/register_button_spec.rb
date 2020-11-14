@@ -16,21 +16,18 @@ feature "Register Button and view results from pressing it", js: true do
 
     And "registers a new software button" do
       fill_in "Email", with: "sam@button.com"
-      current_host_and_port = URI::HTTP.build(
-        host: Capybara.current_session.server.host,
-        port: Capybara.current_session.server.port,
-      )
-      fill_in "Site", with: current_host_and_port
-      # fill_in "SSID", with: "home-ssid"
-      # fill_in "password", with: "home-ap-password"
-      fill_in "External reference", with: "default_external_reference"
-      # pending "add register button to the form"
+      fill_in "Site", with: Capybara.current_session.server.base_url
+      fill_in "SSID", with: "home-ssid"
+      fill_in "Password", with: "home-ap-password"
       click_on "register"
-
-      # binding.pry # uncomment this to pause the test prior to a failure
     end
 
-    Then "He sees a success message and recievs an email with the link"
+    Then "Sam sees a success message and recievs an email with the link" do
+      pending "a success message"
+      wait_for do
+        page.find(".alert [data-testid=\"message\"]").text
+      end.to eq "Software button successfully created."
+    end
     # you get an email with a link
     # http://localhost/button/uuid-code-here
 
@@ -62,6 +59,24 @@ feature "Register Button and view results from pressing it", js: true do
   end
 
   scenario "User registers a button which is already registerd"
+
+  scenario "Software button registration fails with no email" do
+    When "Sam tries to register a button but does not enter an email" do
+      visit new_software_button_path
+      fill_in "Email", with: "sam@button.com"
+      fill_in "Site", with: Capybara.current_session.server.base_url
+      fill_in "SSID", with: "home-ssid"
+      fill_in "Password", with: "home-ap-password"
+      click_on "register"
+    end
+
+    Then "Sam sees the error message fro the registration" do
+      pending "getting a validation error from actual registration"
+      wait_for do
+        page.find(".alert [data-testid=\"message\"]").text
+      end.to eq "Validation failed: Email can't be blank"
+    end
+  end
 
   scenario "Hardware button sends invalid registration request" do
     When "a hardware button makes a HTTP POST to register itself" do

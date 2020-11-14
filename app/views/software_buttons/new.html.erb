@@ -9,9 +9,14 @@
     <%= f.label :site %>
     <%= f.text_field :site, class: "form-control" %>
   </div>
+  <p>Home WiFi</p>
   <div class="form-group">
-    <%= f.label :external_reference %>
-    <%= f.text_field :external_reference, class: "form-control" %>
+    <%= f.label :ssid, "SSID" %>
+    <%= f.text_field :ssid, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.text_field :password, class: "form-control" %>
   </div>
 
   <%= f.button(
