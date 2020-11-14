@@ -2,9 +2,19 @@ require "rails_helper"
 
 feature "Register Button and view results from pressing it", js: true do
   scenario "User registers a button and clicks it" do
-    When "Sam registers a software button" do
-      visit new_software_button_path
+    When "Sam visits the remote button site" do
+      visit root_path
+    end
 
+    Then "Sam sees all the related information about the fine product" do
+      # not really worth testing all the things just yet
+    end
+
+    When "Sam decides to check out the software button" do
+      page.find("[data-testid=\"try-software-button-action\"]").click
+    end
+
+    And "registers a new software button" do
       fill_in "Email", with: "sam@button.com"
       current_host_and_port = URI::HTTP.build(
         host: Capybara.current_session.server.host,

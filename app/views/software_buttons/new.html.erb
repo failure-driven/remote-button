@@ -1,25 +1,23 @@
-<div class="container">
-  <h1>Software Button</h1>
+<h1>Software Button</h1>
 
-  <%= form_for @button, url: software_buttons_path do |f| %>
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.text_field :email, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :site %>
-      <%= f.text_field :site, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :external_reference %>
-      <%= f.text_field :external_reference, class: "form-control" %>
-    </div>
+<%= form_for @button, url: software_buttons_path do |f| %>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :site %>
+    <%= f.text_field :site, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :external_reference %>
+    <%= f.text_field :external_reference, class: "form-control" %>
+  </div>
 
-    <%= f.button(
-      :register,
-      class: "btn btn-primary form-control",
-      data: {
-        "disable-with": '<i class="fa fa-spinner fa-spin"></i>',
-      }) %>
-  <% end %>
-</div>
+  <%= f.button(
+    :register,
+    class: "btn btn-primary form-control",
+    data: {
+      "disable-with": '<i class="fa fa-spinner fa-spin"></i>',
+    }) %>
+<% end %>
