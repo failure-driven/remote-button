@@ -62,8 +62,8 @@ feature "Register Button and view results from pressing it", js: true do
       wait_for do
         page.find_all("section[data-testid=\"events\"] li").map(&:text)
       end.to eq([
-                  "2020-11-14 10:00:00 UTC",
-                  "2020-11-14 10:01:00 UTC",
+                  Time.iso8601("2020-11-14T21:00:00").in_time_zone("UTC").to_s,
+                  Time.iso8601("2020-11-14T21:01:00").in_time_zone("UTC").to_s,
                 ])
     end
     # you get an email with a link
