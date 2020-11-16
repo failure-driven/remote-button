@@ -1,3 +1,10 @@
-<h1><%= @button.external_reference %></h1>
+<h1>Button <%= @button %></h1>
 
+<%= link_to "raw report", report_button_path(@button) %>
 
+<section data-testid="software-button">
+  <button
+    class="btn btn-primary btn-block"
+    onClick="this.disable = true; fetch('<%= event_button_path(@button) %>', { method: 'POST' }).then(() => this.disabled = false)",
+  >Button</button>
+</section>

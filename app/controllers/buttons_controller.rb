@@ -13,6 +13,16 @@ class ButtonsController < ApplicationController
     @button = Button.find(params[:id])
   end
 
+  def event
+    @button = Button.find(params[:id])
+    @button.events.create
+  end
+
+  def report
+    @button = Button.find(params[:id])
+    @events = @button.events
+  end
+
   private
 
   def button_params

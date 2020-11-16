@@ -2,6 +2,10 @@ require "rails_helper"
 
 feature "Register Button and view results from pressing it", js: true do
   scenario "User registers a button and clicks it" do
+    Given "Sam is visiting at 9 o'clock on a saturday" do
+      travel_to Time.iso8601("2020-11-14T21:00:00")
+    end
+
     When "Sam visits the remote button site" do
       visit root_path
     end
@@ -22,10 +26,45 @@ feature "Register Button and view results from pressing it", js: true do
       click_on "register"
     end
 
-    Then "Sam sees a success message and recievs an email with the link" do
+    Then "Sam sees a success message and is on the button page" do
       wait_for do
         page.find(".alert [data-testid=\"message\"]").text
       end.to eq "Software button successfully created."
+    end
+
+    When "Sam looks at the raw report" do
+      click_on "raw report"
+    end
+
+    Then "Sam sees it is empty" do
+      wait_for do
+        page.find("section[data-testid=\"events\"]").text
+      end.to eq "this button has not yet been pressed"
+    end
+
+    When "Sam goes back to the button and clicks the software button twice, 1 minute appart" do
+      page.within("nav") do
+        click_on "Button"
+      end
+      2.times do
+        page.within("section[data-testid=\"software-button\"]") do
+          click_on "Button"
+          wait_for do
+            page.find("section[data-testid=\"software-button\"] button")[:disabled]
+          end.to eq "false"
+          travel_to Time.now + 1.minute
+        end
+      end
+    end
+
+    Then "Sam sees 2 registered events on the raw report, 1 minute appart" do
+      click_on "raw report"
+      wait_for do
+        page.find_all("section[data-testid=\"events\"] li").map(&:text)
+      end.to eq([
+                  "2020-11-14 10:00:00 UTC",
+                  "2020-11-14 10:01:00 UTC",
+                ])
     end
     # you get an email with a link
     # http://localhost/button/uuid-code-here
@@ -42,19 +81,6 @@ feature "Register Button and view results from pressing it", js: true do
     # [PRESS]
     # and a report link
     # http://localhost/button/uuid-code-here/report
-
-    When "he visits the report page"
-
-    Then "he sees no activity"
-
-    When "he views the button and presses it 2 times"
-
-    And "he visits the report page"
-
-    Then "he sees 2 entries with time stamps"
-    # pressed 8:01pm
-    # pressed 8:00pm
-    # < page 1, 2, 3 ...n >
   end
 
   scenario "User registers a button which is already registerd"

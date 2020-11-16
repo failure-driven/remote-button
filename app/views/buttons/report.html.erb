@@ -1,0 +1,15 @@
+<h1>Report for button <%= @button %></h1>
+
+<section data-testid="events">
+  <% if @events.empty? %>
+    <p>this button has not yet been pressed</p>
+  <% else %>
+  <ul class="list-item-group">
+    <% @events.each do |event| %>
+      <li class="list-item">
+        <%= event.created_at %>
+      </li>
+    <% end %>
+  </ul>
+  <% end %>
+</section>
