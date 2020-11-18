@@ -20,7 +20,7 @@ class ButtonsController < ApplicationController
 
   def report
     @button = Button.find(params[:id])
-    @events = @button.events
+    @events = @button.events.page params[:page]
   end
 
   private

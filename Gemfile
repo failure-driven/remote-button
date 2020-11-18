@@ -31,6 +31,9 @@ gem "bootsnap", ">= 1.4.2", require: false
 # Adding for consistent Ruby styling
 gem "rubocop"
 
+# Pagination
+gem "kaminari"
+
 group :test do
   gem "database_cleaner"
 
