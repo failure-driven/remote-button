@@ -10,17 +10,30 @@ feature "Navigation", js: true do
         site: "site.com",
         external_reference: SecureRandom.hex(6).upcase.scan(/../).join(":"),
       )
-      100.times do
+      98.times do
         @button.events.create
       end
       visit report_button_path(@button)
     end
 
     Then "Sam sees 25 events" do
-      pending "work out why 31 events per page"
       wait_for do
-        page.find_all("section[data-testid=\"events\"] li").count
+        page.find_all("section[data-testid=\"events\"] .list-item").count
       end.to eq 25
+    end
+
+    Then "Sam goes to the page 2, he sees 25 events" do
+      click_on "2"
+      wait_for do
+        page.find_all("section[data-testid=\"events\"] .list-item").count
+      end.to eq 25
+    end
+
+    Then "Sam goes to the page 4, he sees 23 events" do
+      click_on "4"
+      wait_for do
+        page.find_all("section[data-testid=\"events\"] .list-item").count
+      end.to eq 23
     end
   end
 end
