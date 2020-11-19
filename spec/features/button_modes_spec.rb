@@ -13,41 +13,17 @@ feature "Button modes", js: true do
     end
 
     When "Sam registers a set of 10 push ups at 9pm" do
-      10.times do
-        page.within("section[data-testid=\"software-button\"]") do
-          click_on "Button"
-          wait_for do
-            page.find("section[data-testid=\"software-button\"] button")[:disabled]
-          end.to eq "false"
-          travel_to Time.now + 2.seconds
-        end
-      end
+      focus_on(:software_button).click(number_of_times: 10, every: 2.seconds)
     end
 
-    And "another 10 at 9:10pm and another at 9:22pm" do
+    And "another 10 at 9:10pm" do
       travel_to Time.iso8601("2020-11-14T21:10:00")
-      10.times do
-        page.within("section[data-testid=\"software-button\"]") do
-          click_on "Button"
-          wait_for do
-            page.find("section[data-testid=\"software-button\"] button")[:disabled]
-          end.to eq "false"
-          travel_to Time.now + 2.seconds
-        end
-      end
+      focus_on(:software_button).click(number_of_times: 10, every: 2.seconds)
     end
 
-    And "another 10 at 10am on Sunday, the next day" do
-      travel_to Time.iso8601("2020-11-15T10:00:00")
-      10.times do
-        page.within("section[data-testid=\"software-button\"]") do
-          click_on "Button"
-          wait_for do
-            page.find("section[data-testid=\"software-button\"] button")[:disabled]
-          end.to eq "false"
-          travel_to Time.now + 2.seconds
-        end
-      end
+    And "another 10 at 10am on Sunday, the next week" do
+      travel_to Time.iso8601("2020-11-22T10:00:00")
+      focus_on(:software_button).click(number_of_times: 10, every: 2.seconds)
     end
 
     Then "Sam sees a report of 3 sets on Saturday and 1 set on Sunday" do
@@ -55,6 +31,15 @@ feature "Button modes", js: true do
       wait_for do
         focus_on(:report).report_totals
       end.to eq("30 total events have been recorded")
+
+      pending "a test for dail totals"
+
+      wait_for do
+        focus_on(:report).report_daily_totals
+      end.to contain_exactly(
+        "2020-11-21" => 10,
+        "2020-11-14" => 20,
+      )
     end
   end
 end
