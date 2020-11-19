@@ -53,10 +53,7 @@ feature "Button modes", js: true do
     Then "Sam sees a report of 3 sets on Saturday and 1 set on Sunday" do
       click_on "raw report"
       wait_for do
-        page
-          .find("section[data-testid=\"report\"]")
-          .find("[data-testid=\"report-total\"]")
-          .text
+        focus_on(:report).report_totals
       end.to eq("30 total events have been recorded")
     end
   end
