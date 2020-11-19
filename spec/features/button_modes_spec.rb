@@ -35,17 +35,6 @@ feature "Button modes", js: true do
           travel_to Time.now + 2.seconds
         end
       end
-
-      travel_to Time.iso8601("2020-11-14T21:22:00")
-      10.times do
-        page.within("section[data-testid=\"software-button\"]") do
-          click_on "Button"
-          wait_for do
-            page.find("section[data-testid=\"software-button\"] button")[:disabled]
-          end.to eq "false"
-          travel_to Time.now + 2.seconds
-        end
-      end
     end
 
     And "another 10 at 10am on Sunday, the next day" do
@@ -63,10 +52,12 @@ feature "Button modes", js: true do
 
     Then "Sam sees a report of 3 sets on Saturday and 1 set on Sunday" do
       click_on "raw report"
-      pending "an actual report section with report on it"
       wait_for do
-        page.find_all("section[data-testid=\"report\"]")
-      end.to eq("3 sets of 10 on Saturday and 1 set of 10 on a Sunday")
+        page
+          .find("section[data-testid=\"report\"]")
+          .find("[data-testid=\"report-total\"]")
+          .text
+      end.to eq("30 total events have been recorded")
     end
   end
 end

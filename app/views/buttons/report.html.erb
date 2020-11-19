@@ -1,12 +1,22 @@
 <h1>Report for button <%= @button %></h1>
-
+    <section data-testid="report">
+    <h4 data-testid="report-total"><%= @total_events_count %> total events have been recorded</h4>
+    <ul class="list-group">
+      <% @daily_events.each do |day, count| %> 
+      <li class="list-group-item">
+        <%= day %>:  <%=  count %>    
+      </li>
+      <% end %>
+    </ul>
+    </section>
+<h3>All Events</h3>
 <section data-testid="events">
   <% if @events.empty? %>
     <p>this button has not yet been pressed</p>
   <% else %>
-  <ul class="list-item-group">
+  <ul class="list-group">
     <% @events.each do |event| %>
-      <li class="list-item">
+      <li class="list-group-item">
         <%= event.created_at %>
       </li>
     <% end %>
