@@ -306,9 +306,13 @@ Check a CI build
 
 1. [✅] Write first 3 stories
 
-1. [ ] Get email's working and tested
+1. [✅] Get email's working and tested
 
 - using this template https://github.com/leemunroe/responsive-html-email-template
+
+1. [ ] emails on heroku
+
+- https://devcenter.heroku.com/articles/sendgrid#ruby probably?
 
 1. [ ] Get background jobs working
 

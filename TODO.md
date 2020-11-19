@@ -1,5 +1,6 @@
 # TODO
 
+- [ ] prod emails working
 - [ ] make sofware button hold onto invalid values between invocations
 - [ ] software button disable with is no longer html
 - [ ] make falsh message disable X work see jquery and popper.js as per
