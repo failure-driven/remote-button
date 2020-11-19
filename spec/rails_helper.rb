@@ -6,6 +6,7 @@ require File.expand_path("../config/environment", __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
+require "capybara/email/rspec"
 Dir["spec/support/**/*.rb"].each do |file|
   require Rails.root.join(file).to_s
 end
@@ -66,4 +67,8 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   # include PageFragments in features
   config.include PageFragments, type: :feature
+
+  # predictable host and port for email links
+  Capybara.server_port = 3001
+  Capybara.server_host = "localhost"
 end

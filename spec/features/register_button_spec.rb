@@ -32,6 +32,37 @@ feature "Register Button and view results from pressing it", js: true do
       end.to eq "Software button successfully created."
     end
 
+    And "Sam receives an email" do
+      open_email "sam@button.com"
+      wait_for { current_email.subject }.to eq "Complete button registration"
+      wait_for { current_email.to }.to contain_exactly("sam@button.com")
+      wait_for { current_email.from }.to contain_exactly("from+test@example.com")
+    end
+
+    And "the email has 3 links" do
+      email_body = Capybara.string(current_email.body)
+      wait_for do
+        email_body.find_all("a").map(&:text)
+      end.to contain_exactly(
+        "REGISTER",
+        "Unsubscribe",
+        "Failure Driven",
+      )
+    end
+
+    When "Sam clicks the REGISTER link in the email" do
+      current_email.click_link "REGISTER"
+    end
+
+    Then "Sam is taken to the button page" do
+      wait_for do
+        page.find("h1").text
+      end.to eq "Button #{Button.first.external_reference}"
+      # TODO: configure the mode to be COUNTER
+      # TODO: we should set the timezone based on the users browser?
+      # TODO: this should actually confirm registration - maybe we use devise
+    end
+
     When "Sam looks at the raw report" do
       click_on "raw report"
     end
@@ -66,21 +97,6 @@ feature "Register Button and view results from pressing it", js: true do
                   Time.iso8601("2020-11-14T21:01:00").in_time_zone("UTC").to_s,
                 ])
     end
-    # you get an email with a link
-    # http://localhost/button/uuid-code-here
-
-    When "he follows the link from the email and completes registration of his button"
-    # code: unique-button-mac-address-identifier
-    # name: _________________________________
-    # mode: COUNTER
-    # SUBMIT
-
-    Then "he gets a success message and a link to his button and report page"
-    # you get a success message and a link to the software button
-    # http://localhost/software_button/uuid-code-here
-    # [PRESS]
-    # and a report link
-    # http://localhost/button/uuid-code-here/report
   end
 
   scenario "User registers a button which is already registerd"
