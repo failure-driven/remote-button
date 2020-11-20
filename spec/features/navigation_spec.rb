@@ -18,21 +18,21 @@ feature "Navigation", js: true do
 
     Then "Sam sees 25 events" do
       wait_for do
-        page.find_all("section[data-testid=\"events\"] .list-item").count
+        page.find_all("section[data-testid=\"events\"] .list-group-item").count
       end.to eq 25
     end
 
     Then "Sam goes to the page 2, he sees 25 events" do
       click_on "2"
       wait_for do
-        page.find_all("section[data-testid=\"events\"] .list-item").count
+        page.find_all("section[data-testid=\"events\"] .list-group-item").count
       end.to eq 25
     end
 
     Then "Sam goes to the page 4, he sees 23 events" do
       click_on "4"
       wait_for do
-        page.find_all("section[data-testid=\"events\"] .list-item").count
+        page.find_all("section[data-testid=\"events\"] .list-group-item").count
       end.to eq 23
     end
   end
