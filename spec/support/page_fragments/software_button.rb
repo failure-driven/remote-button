@@ -4,10 +4,9 @@ module PageFragments
       number_of_times.times do
         browser.within("section[data-testid=\"software-button\"]") do
           browser.click_on "Button"
-          # TODO: add back in
-          # browser.wait_for do
-          #   browser.find("section[data-testid=\"software-button\"] button")[:disabled]
-          # end.to eq "false"
+          browser.synchronize do
+            browser.find("section[data-testid=\"software-button\"] button")[:disabled] == "false"
+          end
           browser.travel_to Time.now + every
         end
       end

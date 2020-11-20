@@ -5,6 +5,6 @@
 <section data-testid="software-button">
   <button
     class="btn btn-primary btn-block"
-    onClick="this.disable = true; fetch('<%= event_button_path(@button) %>', { method: 'POST' }).then(() => this.disabled = false)",
+    onClick="this.disabled = true; fetch('<%= event_button_path(@button) %>', { method: 'POST' }).then(() => this.disabled = false)",
   >Button</button>
 </section>
