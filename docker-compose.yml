@@ -48,7 +48,7 @@ services:
   #   image: redis
 
   database:
-    image: postgres
+    image: postgres:12.5
     env_file:
       - .env/development/database
     volumes:
