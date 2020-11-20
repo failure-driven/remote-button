@@ -50,7 +50,6 @@ group :test do
   gem "webdrivers", "~> 3.0"
 
   gem "pry"
-  gem "pry-byebug"
   gem "pry-rails"
   gem "pry-stack_explorer"
 
@@ -58,6 +57,12 @@ group :test do
 end
 
 group :development, :test do
+  # call as my_complex_hash for awesome pretty print
+  gem "awesome_print"
+
+  # dev and test to be able to call binding.pry in specs
+  gem "pry-byebug"
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
 end

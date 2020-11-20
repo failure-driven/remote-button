@@ -1,5 +1,4 @@
 require "rails_helper"
-require "pry"
 
 feature "Navigation", js: true do
   scenario "Pagination of raw results" do
