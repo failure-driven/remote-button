@@ -8,4 +8,8 @@ class Button < ApplicationRecord
   def to_s
     external_reference
   end
+
+  def daily_events
+    events.order("date(created_at) DESC").group("date(created_at)").count
+  end
 end

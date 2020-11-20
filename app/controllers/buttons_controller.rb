@@ -23,7 +23,6 @@ class ButtonsController < ApplicationController
     @button = Button.find(params[:id])
     @total_events_count = @button.events.count
     @events = @button.events.page params[:page]
-    @daily_events = @button.events.order("date(created_at) DESC").group("date(created_at)").count
   end
 
   private

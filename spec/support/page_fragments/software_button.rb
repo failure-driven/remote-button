@@ -12,5 +12,9 @@ module PageFragments
         end
       end
     end
+
+    def count
+      browser.find_all("section[data-testid=\"events\"] .list-group-item").size
+    end
   end
 end

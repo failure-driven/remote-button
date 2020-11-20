@@ -5,9 +5,9 @@ module PageFragments
     end
 
     # TODO: add dialy reports
-    # def report_daily_totals
-    #   report.find("[data-testid=\"report-daily-total\"] li")
-    # end
+    def report_daily_totals
+      report.all("[data-testid=\"report-daily-total\"] li").map(&:text)
+    end
 
     private
 
