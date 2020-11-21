@@ -32,12 +32,11 @@ feature "Button modes", js: true do
         focus_on(:report).report_totals
       end.to eq("30 total events have been recorded")
 
-      # pending "a test for dail totals"
       wait_for do
         focus_on(:report).report_daily_totals
       end.to contain_exactly(
-        "2020-11-22: 11",
-        "2020-11-14: 19",
+        "2020-11-22: 10",
+        "2020-11-14: 20",
       )
     end
   end
