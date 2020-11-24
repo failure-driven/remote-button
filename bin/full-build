@@ -5,6 +5,7 @@ set -e
 bundle install
 yarn
 
+yarn lint
 bundle exec rubocop
 
 bundle exec rspec

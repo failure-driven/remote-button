@@ -2,16 +2,35 @@
   "name": "remote_button",
   "private": true,
   "dependencies": {
+    "@babel/preset-react": "^7.12.7",
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.3.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^4.5.3",
+    "eslint-config-prettier": "^6.15.0",
+    "highcharts": "^8.2.2",
+    "highcharts-react-official": "^3.0.0",
+    "prettier": "^2.2.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "turbolinks": "^5.2.0"
+  },
+  "scripts": {
+    "lint": "eslint --ext .js --ext .jsx app/javascript/",
+    "format": "prettier-eslint app/javascript/**/*{js,jsx}"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "eslint": "^7.14.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "webpack-dev-server": "^3.11.0"
   }
 }

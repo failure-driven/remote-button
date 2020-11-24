@@ -24,3 +24,10 @@
   <% end %>
   <%= paginate @events %>
 </section>
+
+<%= content_tag :div,
+  id: "reports_data",
+  data: @button.daily_events.map { |date, value| [date.strftime('%Q'), value] }.to_json do %>
+<% end %>
+
+<%= javascript_pack_tag 'button_report' %>
