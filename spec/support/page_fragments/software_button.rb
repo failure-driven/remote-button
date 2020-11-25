@@ -22,7 +22,7 @@ module PageFragments
 
     def rename(new_name)
       browser.within("form[data-testid=\"update_name_form\"]") do
-        browser.fill_in "Name", with: "First Button"
+        browser.fill_in "Name", with: new_name
         browser.click_on "update name"
       end
     end

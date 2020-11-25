@@ -16,9 +16,9 @@ feature "Button properties", js: true do
       page.within("[data-testid=\"button-actions\"]") do
         click_on "Change name"
       end
-   
+
       focus_on(:software_button).rename("First Button")
-      
+
       visit button_path(@button)
       wait_for do
         focus_on(:software_button).name
