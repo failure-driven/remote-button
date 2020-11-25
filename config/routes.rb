@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   end
 
   get "test_root", to: "rails/welcome#index", as: "test_root_rails"
+  
+  get "/all_my_buttons", to: "buttons#all_my_buttons" # this route needs fixing
+
   post "/", to: "buttons#create"
   patch "/", to: "buttons#update"
   root to: "home#index"

@@ -3,7 +3,6 @@ require "rails_helper"
 feature "Button properties", js: true do
   scenario "renaming button" do
     Given "Sam has a button which has no name" do
-      # travel_to Time.iso8601("2020-11-23T21:00:00")
       travel_to Time.now
       @button = Button.create!(
         email: "m@m.m",
@@ -13,8 +12,9 @@ feature "Button properties", js: true do
       visit button_path(@button)
     end
 
-    When "Sam clicks edit they can remae the button" do
-      visit edit_button_path(@button)
+    When "Sam clicks edit they can rename the button" do
+      # visit edit_button_path(@button)
+      click_on "Change name"
       fill_in "Name", with: "First Button"
       click_on "update name"
       visit button_path(@button)
@@ -22,9 +22,30 @@ feature "Button properties", js: true do
         focus_on(:software_button).name
       end.to eq("First Button")
     end
-
-    # Then "Sam sees that the button's name changed on the page" do
-    #   # code here
-    # end
   end
+
+  # scenario "Viewing all buttons belonging to one email" do
+  #   Given "Sam has two buttons registered with the same email" do
+  #     travel_to Time.iso8601("2020-11-23T21:00:00")
+  #     @button_1 = Button.create!(
+  #       email: "m@m.m",
+  #       site: "site.com",
+  #       external_reference: SecureRandom.hex(6).upcase.scan(/../).join(":"),
+  #       )
+  #     travel_to Time.now  
+  #     @button_2 = Button.create!(
+  #       email: "m@m.m",
+  #       site: "site.com",
+  #       external_reference: SecureRandom.hex(6).upcase.scan(/../).join(":"),
+  #       )
+  #       visit button_path(@button_2)
+  #   end
+
+  #   When "Sam clicks show all they see all their buttons" do
+  #     # visit all my buttons page\
+  #     visit all_my_buttons_path
+  #     # list contains two buttons
+  #     # Sam can click on them and then it take them to that button's page
+  #   end
+  # end
 end

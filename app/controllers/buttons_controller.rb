@@ -33,6 +33,12 @@ class ButtonsController < ApplicationController
     @button = Button.find(params[:id])
     @button.update(button_params) ? (redirect_to button_path(@button)) : (render :new)
   end
+  
+  def all_my_buttons
+    @button = Button.find(params[:id])
+    # @buttons = Button.where(email: params[:email])
+    # raise
+  end
 
   private
 
