@@ -25,11 +25,20 @@ class ButtonsController < ApplicationController
     @events = @button.events.page params[:page]
   end
 
+  def edit
+    @button = Button.find(params[:id])
+  end
+
+  def update
+    @button = Button.find(params[:id])
+    @button.update(button_params) ? (redirect_to button_path(@button)) : (render :new)
+  end
+
   private
 
   def button_params
     return unless params[:button]
 
-    params.require(:button).permit(:email, :site, :external_reference)
+    params.require(:button).permit(:email, :site, :external_reference, :name)
   end
 end

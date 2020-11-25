@@ -1,0 +1,16 @@
+<h1>Button is: <%= @button %></h1>
+<p>B created at:<%= @button.created_at %></p>
+<p>B name: <%= @button.name %></p>
+
+
+<%= form_with model: @button, url: button_path do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  <%= f.submit(
+    "update name".to_s,
+    class: "btn btn-primary form-control",
+    data: {
+      "disable-with": '<i class="fa fa-spinner fa-spin"></i>',
+          }) %>
+<% end %>

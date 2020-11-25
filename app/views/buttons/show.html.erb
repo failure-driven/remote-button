@@ -1,6 +1,9 @@
 <h1>Button <%= @button %></h1>
-
+<h3>Your Button's name:</h3><section data-testid="button-name"><h4> <%= @button.name %></h4> </section> 
+<%= link_to "Change name", edit_button_path(@button) %>
+<br>
 <%= link_to "raw report", report_button_path(@button) %>
+
 
 <section data-testid="software-button">
   <button
