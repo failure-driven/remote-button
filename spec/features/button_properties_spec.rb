@@ -12,11 +12,13 @@ feature "Button properties", js: true do
       visit button_path(@button)
     end
 
-    When "Sam clicks edit they can rename the button" do
-      # visit edit_button_path(@button)
-      click_on "Change name"
-      fill_in "Name", with: "First Button"
-      click_on "update name"
+    When "Sam attempts to rename the button" do
+      page.within("[data-testid=\"button-actions\"]") do
+        click_on "Change name"
+      end
+   
+      focus_on(:software_button).rename("First Button")
+      
       visit button_path(@button)
       wait_for do
         focus_on(:software_button).name
@@ -32,7 +34,7 @@ feature "Button properties", js: true do
   #       site: "site.com",
   #       external_reference: SecureRandom.hex(6).upcase.scan(/../).join(":"),
   #       )
-  #     travel_to Time.now  
+  #     travel_to Time.now
   #     @button_2 = Button.create!(
   #       email: "m@m.m",
   #       site: "site.com",

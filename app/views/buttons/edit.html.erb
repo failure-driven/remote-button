@@ -3,7 +3,7 @@
 <p>B name: <%= @button.name %></p>
 
 
-<%= form_with model: @button, url: button_path do |f| %>
+<%= form_with model: @button, url: button_path, data: {testid: "update_name_form"} do |f| %>
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, class: "form-control" %>
