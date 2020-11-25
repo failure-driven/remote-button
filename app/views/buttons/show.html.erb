@@ -3,7 +3,7 @@
 <div data-testid="button-actions">
   <%= link_to "Change name", edit_button_path(@button) %>
   <br>
-  <%= link_to "All my buttons", all_my_buttons_path %>
+  <%= link_to "All my buttons", all_my_buttons_button_path(@button) %>
   <br>
   <%= link_to "raw report", report_button_path(@button) %>
 </div>

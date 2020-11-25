@@ -1,1 +1,22 @@
-<%= @buttons %>
+<h3>All My Buttons</h3>
+<section data-testid="buttons">
+  <ul class="list-group">
+   <li class="list-group-item">
+    <div class="row">
+    <div class="col">Button ID</div>
+    <div class="col">External Reference</div>
+    <div class="col">Button name</div>
+    </div>
+  </li>
+    <% @buttons.each do |button| %>
+      <li class="list-group-item">
+      <div class="row">
+        <div class="col "><%= link_to button.id.slice(0,6),
+         button_path(button) %></div>
+        <div class="col"><%= button.external_reference %></div>
+        <div class="col"><%= button.name %></div>
+      </div>
+      </li>
+    <% end %>
+  </ul>
+

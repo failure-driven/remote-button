@@ -36,8 +36,7 @@ class ButtonsController < ApplicationController
 
   def all_my_buttons
     @button = Button.find(params[:id])
-    # @buttons = Button.where(email: params[:email])
-    # raise
+    @buttons = Button.where(email: @button.email)
   end
 
   private

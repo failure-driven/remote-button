@@ -6,12 +6,11 @@ Rails.application.routes.draw do
     member do
       get :report
       post :event
+      get :all_my_buttons
     end
   end
 
   get "test_root", to: "rails/welcome#index", as: "test_root_rails"
-
-  get "/all_my_buttons", to: "buttons#all_my_buttons" # this route needs fixing
 
   post "/", to: "buttons#create"
   patch "/", to: "buttons#update"
