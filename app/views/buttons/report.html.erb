@@ -13,6 +13,11 @@
     data: @button.daily_events.map { |date, value| [date.strftime('%Q').to_i, value] }.to_json do %>
   <% end %>
   <%= javascript_pack_tag 'button_report' %>
+  <%= content_tag :div,
+    id: "button-raw-report",
+    data: @button.events.map { |event| [event.created_at.to_datetime.strftime('%Q').to_i, 1] }.to_json do %>
+  <% end %>
+  <%= javascript_pack_tag 'button_raw_report' %>
 </section>
 
 <h3>All Events</h3>
