@@ -4,11 +4,7 @@ feature "Button modes", js: true do
   scenario "Default mode" do
     Given "Sam is visiting at 9 o'clock on a saturday" do
       travel_to Time.iso8601("2020-11-14T21:00:00")
-      @button = Button.create!(
-        email: "m@m.m",
-        site: "site.com",
-        external_reference: SecureRandom.hex(6).upcase.scan(/../).join(":"),
-      )
+      @button = create(:button)
       visit button_path(@button)
     end
 
