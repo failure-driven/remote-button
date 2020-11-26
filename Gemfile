@@ -43,6 +43,9 @@ gem "sendgrid-ruby"
 group :test do
   gem "database_cleaner"
 
+  # Factory bot for testing
+  gem "factory_bot_rails"
+
   gem "rspec-example_steps"
   gem "rspec-rails"
   gem "rspec-wait"
