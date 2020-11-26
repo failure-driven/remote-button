@@ -16,8 +16,12 @@ module PageFragments
       browser.find_all("section[data-testid=\"#{test_id_value}\"] .list-group-item").size
     end
 
+    def count_cards
+      browser.find_all("section[data-testid=\"buttons\"] .card").size
+    end
+
     def click_list_item
-      browser.find_all("div[class=\"col button-link\"]").first.text
+      browser.find_all("[class=\"button-link btn btn-primary\"]").first.text
     end
 
     def name

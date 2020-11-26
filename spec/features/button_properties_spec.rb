@@ -15,9 +15,7 @@ feature "Button properties", js: true do
       focus_on(:software_button).rename("First Button")
 
       visit button_path(@button)
-      wait_for do
-        focus_on(:software_button).name
-      end.to eq("First Button")
+      expect(focus_on(:software_button).name).to eq("First Button")
     end
   end
 
@@ -31,16 +29,12 @@ feature "Button properties", js: true do
     When "Sam clicks show all they see all their buttons" do
       click_on "All my buttons"
       # there are two buttons, but this equals 3 because the header is also a list-item
-      wait_for do
-        focus_on(:software_button).count("buttons")
-      end.to eq 3
+      expect(focus_on(:software_button).count_cards).to eq 2
     end
 
     When "Sam clicks on a button they are taken to that button's show page" do
       click_on focus_on(:software_button).click_list_item.to_s
-      wait_for do
-        focus_on(:software_button).name
-      end.to eq(@button1.name)
+      expect(focus_on(:software_button).name).to eq(@button1.name)
     end
   end
 end

@@ -1,22 +1,14 @@
 <h3>All My Buttons</h3>
 <section data-testid="buttons">
-  <ul class="list-group">
-   <li class="list-group-item">
-    <div class="row">
-    <div class="col">Button ID</div>
-    <div class="col">External Reference</div>
-    <div class="col">Button name</div>
-    </div>
-  </li>
+<div class="d-flex justify-content-around flex-wrap">
     <% @buttons.each do |button| %>
-      <li class="list-group-item">
-      <div class="row">
-        <div class="col button-link"><%= link_to button.id.slice(0,6),
-         button_path(button) %></div>
-        <div class="col"><%= button.external_reference %></div>
-        <div class="col"><%= button.name %></div>
+    <div class="card col-12 col-md-4 col-lg-3 m-2" style="min-width: 28rem;">
+      <div class="card-body">
+        <h5 class="card-title">ID: <%= button.id.slice(0,6) %></h5>
+        <p class="card-text">External Ref.: <%= button.external_reference %></p>
+        <%= link_to button.id.slice(0,6),
+         button_path(button), class: "button-link btn btn-primary", style: "width:100%" %>
       </div>
-      </li>
+    </div>
     <% end %>
-  </ul>
-
+</div>
