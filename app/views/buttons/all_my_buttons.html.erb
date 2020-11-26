@@ -11,7 +11,7 @@
     <% @buttons.each do |button| %>
       <li class="list-group-item">
       <div class="row">
-        <div class="col "><%= link_to button.id.slice(0,6),
+        <div class="col"><%= link_to button.id.slice(0,6),
          button_path(button) %></div>
         <div class="col"><%= button.external_reference %></div>
         <div class="col"><%= button.name %></div>

@@ -13,8 +13,11 @@ module PageFragments
     end
 
     def count(test_id_value)
-      # browser.find_all("section[data-testid=\"events\"] .list-group-item").size
       browser.find_all("section[data-testid=\"#{test_id_value}\"] .list-group-item").size
+    end
+
+    def click_list_item
+      browser.find_all("div[class=\"col button-link\"]").first.text
     end
 
     def name
