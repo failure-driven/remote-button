@@ -40,6 +40,11 @@ gem "premailer-rails"
 # Email sending on heroku
 gem "sendgrid-ruby"
 
+# Sidekiq for background jobs
+gem "sidekiq"
+gem "sidekiq-statistic"
+gem "sidekiq-status"
+
 group :test do
   gem "database_cleaner"
 

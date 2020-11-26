@@ -35,5 +35,7 @@ module RemoteButton
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid
     end
+
+    # config.active_job.queue_adapter = :sidekiq
   end
 end
