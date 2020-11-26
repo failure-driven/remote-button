@@ -12,7 +12,6 @@ end
 feature "Button properties", js: true do
   scenario "renaming button" do
     Given "Sam has a button which has no name" do
-
       @button = create(:button)
       visit button_path(@button)
     end
@@ -31,20 +30,22 @@ feature "Button properties", js: true do
     end
   end
 
-  # scenario "Viewing all buttons belonging to one email" do
-  #   Given "Sam has two buttons registered with the same email" do
-  #     @button_1 = create(:button)
-  #     @button_2 = create(:button)
-  #     visit button_path(@button_2)
-  #   end
+  scenario "Viewing all buttons belonging to one email" do
+    Given "Sam has two buttons registered with the same email" do
+      @button1 = create(:button)
+      @button2 = create(:button)
+      visit button_path(@button2)
+    end
 
-  #   When "Sam clicks show all they see all their buttons" do
-  #     @button_1
-  #     @button_2
-  #     # visit all my buttons page\
-  #     # visit all_my_buttons_path
-  #     # list contains two buttons
-  #     # Sam can click on them and then it take them to that button's page
-  #   end
-  # end
+    When "Sam clicks show all they see all their buttons" do
+      click_on "All my buttons"
+      wait_for do
+        focus_on(:software_button).count("buttons")
+      end.to eq 3
+    end
+
+    # When "Sam clicks show all they see all their buttons" do
+    #   # Sam can click on them and then it take them to that button's page
+    # end
+  end
 end
