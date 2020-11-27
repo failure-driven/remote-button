@@ -12,16 +12,21 @@
 
 import '../src/style.scss';
 
+import DynamicBannerText from '../components/DynamicBannerText';
+
 require('@rails/ujs').start();
 require('turbolinks').start();
 require('@rails/activestorage').start();
 /* eslint-disable import/no-unresolved */
 require('channels');
+require('bootstrap');
 
-const images = require.context('../images', true)
-
-import { loadDynamicBannerText } from '../components/banner';
+require.context('../images', true);
 
 document.addEventListener('turbolinks:load', () => {
-  loadDynamicBannerText();
+  $(() => {
+    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="popover"]').popover();
+  });
+  DynamicBannerText();
 });
