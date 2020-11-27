@@ -1,0 +1,30 @@
+.banner{
+    background-image: url("~circle_ink.png");
+    //background: url(../../images/circle_ink.png);
+    // linear-gradient(rgba(203, 206, 211, 0.5),rgba(5, 16, 35, 0.5)) 
+    background-size: cover;
+    background-position: center;
+    padding: 150px 0px;
+    h1{
+        color: black;
+        text-align: left;
+        font-size: 72px;
+        position: absolute;
+        left: 5px;
+        top: 50px;
+        padding-left: 30px;
+      }
+    // .container{
+    //     width: 900px;
+    //     margin: 0 auto;
+    // }
+    p{
+        margin-bottom: 45px;
+    }
+}
+@media(max-width: 375px){
+  .banner h1{
+    letter-spacing: 10px;
+    line-height: 50px;
+    }
+}

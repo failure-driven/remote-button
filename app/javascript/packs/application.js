@@ -17,3 +17,11 @@ require('turbolinks').start();
 require('@rails/activestorage').start();
 /* eslint-disable import/no-unresolved */
 require('channels');
+
+const images = require.context('../images', true)
+
+import { loadDynamicBannerText } from '../components/banner';
+
+document.addEventListener('turbolinks:load', () => {
+  loadDynamicBannerText();
+});
