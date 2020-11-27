@@ -1,5 +1,5 @@
-<div class="navbar">
-  <div class="remote-btn-logo">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">
     <%= image_tag(
             "remote_button_drawn_01.png",
             size: "50x50",
@@ -8,21 +8,9 @@
               testid: "remote-button-image"
             }
             ) %>
-  </div>
-    <nav>
-      <ul>
-        <li><a href="#" class="active">About</a></li>
-        <li><a href="#">Register</a></li>
-        <li><a href="#">Guide</a></li>
-        <li><a href="#">Contact</a></li>
-        <% if @button && !@button.new_record? %>
-        <li class="nav-item">
-          <a class="nav-link" href="<%= button_path(@button) %>">Button</a>
-        </li>
-      <% end %>
-      </ul>
-    </nav>
-    <div class="menu-toggle">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="" data-oldclass="navbar-toggler-icon">
       <%= image_tag(
               "on.png",
               size: "30x30",
@@ -31,6 +19,17 @@
                 testid: "placeholder-image"
               }
               ) %>
+    </span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="#">Register <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="#">Guide</a>
+      <a class="nav-item nav-link" href="#">Contact</a>
+        <% if @button && !@button.new_record? %>
+          <a class="nav-item nav-link" href="<%= button_path(@button) %>">Button</a>
+        </li>
+      <% end %>
     </div>
   </div>
-</div>
+</nav>
