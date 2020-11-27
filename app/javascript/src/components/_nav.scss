@@ -1,0 +1,66 @@
+.navbar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 100px;
+    background-color: #000;
+    width: 100%;
+
+    .remote-btn-logo{
+        float: left;
+        height: 50px;
+    }
+}
+nav{
+    float: right;
+        ul{
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        ul li{
+            list-style: none;
+            a{
+                height: 50px;
+                line-height: 50px;
+                color: rgb(204, 204, 204);
+                text-decoration: none;
+                padding: 0 20px;
+                display: block;
+            }
+            a:hover, a.active{
+                color: rgb(204, 204, 204);
+                background: rgb(68, 68, 68);
+                text-decoration: none;
+            }
+        }
+}
+    .menu-toggle{
+        color: black;
+        float: right;
+        line-height: 50px;
+        font-size: 24px;
+        display: none;
+        }
+ @media(max-width: 991px){
+    .navbar{
+        padding: 0 20px;
+    }
+            .menu-toggle{
+                display: block;
+            }
+            nav{
+                //display: none;
+                position: absolute;
+                width: 100%;
+                height: 100vh;
+                top: 50px;
+                left: 0;
+                background: rgb(0, 0, 0);
+                transition: 0.5s;
+                ul{
+                    display: block;
+                    text-align: center;
+                }
+            }
+        }

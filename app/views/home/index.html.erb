@@ -1,35 +1,34 @@
-<section>
-  <div class="container-fluid container-fluid-max">
-    <div class="row text-center py-5">
-      <div class="col-12 pt-3">
-        <h1>Remote Button</h1>
-      </div>
-      <div class="col-12 pt-3">
-        <%= image_tag(
-          "remote_button_drawn_01.png",
-          size: "200x175",
-          alt: "Remote Button",
-          data: {
-            testid: "remote-button-image"
-          }
-          ) %>
-      </div>
-    </div>
+<div class="banner">
+  <div class="container text-center">
+    <h1>The Remote Button</h1>
+    <p>
+  <span id="banner-typed-text"></span>
+  </p>
+  <a class="btn-cta" target="_blank" href="https://github.com/failure-driven/remote-button" role="button">find out more</a>
   </div>
-</section>
+</div>
 
 <section id="process" class="process">
-  <div class="container-fluid container-fluid-max">
-    <div class="row text-center py-5">
-      <div class="col-12 pb-4">
-        <h2 class="text-red">What is a remote button?</h2>
+  <div class="container container-fluid container-fluid-max">
+    <div class="row text-center">
+      <div class="col-12 mt-5">
+        <h2>What is a remote button?</h2>
       </div>
-      <div class="col-12 col-sm-6 col-lg-3">Hardware build</div>
-      <div class="col-12 col-sm-6 col-lg-3">Get the code</div>
-      <div class="col-12 col-sm-6 col-lg-3">Multitude of uses</div>
-      <div class="col-12 col-sm-6 col-lg-3">Connect with friends</div>
+      <div class="col-12 col-sm-12 col-lg-3">
+        <div class="card">Hardware</div>
+      </div>
+      <div class="col-12 col-sm-12 col-lg-3">
+        <div class="card">Get the code
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-lg-3">
+      <div class="card">Multitude of uses
+      </div>
+      </div>
+      <div class="col-12 col-sm-12 col-lg-3">
+        <div class="card">Connect with friends</div>
+      </div>
       <div class="col-12 pt-3">
-        <a class="btn btn-secondary" target="_blank" href="https://github.com/failure-driven/remote-button" role="button">find out more</a>
       </div>
     </div>
   </div>
@@ -37,15 +36,14 @@
 
 <section>
   <div class="container-fluid container-fluid-max">
-    <div class="row text-center py-5">
+    <div class="row text-center">
       <div class="col-12 pt-3">
         Why not try a software version of the button NOW!
       </div>
       <div class="col-12 pt-3">
-        <%= link_to(
-          "Software Button",
+        <%= link_to( "Software Button",
           new_software_button_path,
-          class: "btn btn-primary",
+          class: "btn-cta",
           data: {
             testid: "try-software-button-action",
           }
@@ -54,3 +52,89 @@
     </div>
   </div>
 </section>
+
+<div class="process-card container text-center">
+  <h2 class="mt-5 mb-5">
+    How it Works
+  </h2>
+  <div class="row">
+
+    <div class="col-12 col-sm-12 col-lg-3 mb-3">
+      <%= image_tag(
+          "unbox.png",
+          size: "50x50",
+          alt: "unboxing",
+          data: {
+            testid: "inboxing-image"
+          }
+          ) %>
+      <h3>Unbox</h3>
+      <p>Recieve your button in the mail</p>
+    </div>
+
+    <div class="col-12 col-sm-12 col-lg-3 mb-3">
+            <%= image_tag(
+          "configure.png",
+          size: "50x50",
+          alt: "configure",
+          data: {
+            testid: "configure-image"
+          }
+          ) %>
+      <h3>Setup</h3>
+      <p>Connect your button to wifi</p>
+    </div>
+
+    <div class="col-12 col-sm-12 col-lg-3 mb-3">
+          <%= image_tag(
+          "wait.png",
+          size: "50x50",
+          alt: "configuring button",
+          data: {
+            testid: "configure-button-image"
+          }
+          ) %>
+      <h3>Configure</h3>
+      <p>Customize the mode that you wish to use.</p>
+    </div>
+
+    <div class="col-12 col-sm-12 col-lg-3 mb-3">
+      <%= image_tag(
+          "email.png",
+          size: "50x50",
+          alt: "register email",
+          data: {
+            testid: "reg-email-image"
+          }
+          ) %>
+      <h3>Register Your Email</h3>
+      <p>Access your button HERE</p>
+    </div>
+
+    <div class="col-12 col-sm-12 col-lg-3 mb-3">
+      <%= image_tag(
+          "email.png",
+          size: "50x50",
+          alt: "register email",
+          data: {
+            testid: "reg-email-image"
+          }
+          ) %>
+      <h3>Configure Button Setup</h3>
+      <p>Choose a name for your button so you can identify it, select a mode. If your registration is successful, your button will flash (x) times.</p>
+    </div>
+
+    <div class="col-12 col-sm-12 col-lg-3 mb-3">
+      <%= image_tag(
+          "on.png",
+          size: "50x50",
+          alt: "on button",
+          data: {
+            testid: "activated-button-image"
+          }
+          ) %>
+     <h3>You are ready to go!</h3>
+    </div>
+
+  </div>
+</div>

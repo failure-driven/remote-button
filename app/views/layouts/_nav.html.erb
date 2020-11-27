@@ -1,15 +1,36 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="<%= root_path %>">Remote Button</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <% if @button && !@button.new_record? %>
+<div class="navbar">
+  <div class="remote-btn-logo">
+    <%= image_tag(
+            "remote_button_drawn_01.png",
+            size: "50x50",
+            alt: "Remote Button",
+            data: {
+              testid: "remote-button-image"
+            }
+            ) %>
+  </div>
+    <nav>
+      <ul>
+        <li><a href="#" class="active">About</a></li>
+        <li><a href="#">Register</a></li>
+        <li><a href="#">Guide</a></li>
+        <li><a href="#">Contact</a></li>
+        <% if @button && !@button.new_record? %>
         <li class="nav-item">
           <a class="nav-link" href="<%= button_path(@button) %>">Button</a>
         </li>
       <% end %>
+      </ul>
+    </nav>
+    <div class="menu-toggle">
+      <%= image_tag(
+              "on.png",
+              size: "30x30",
+              alt: "placeholder for menu bar",
+              data: {
+                testid: "placeholder-image"
+              }
+              ) %>
+    </div>
   </div>
-</nav>
+</div>

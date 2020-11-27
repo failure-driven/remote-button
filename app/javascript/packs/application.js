@@ -15,4 +15,12 @@ require("channels");
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+
 import "../src/style.scss";
+const images = require.context('../images', true)
+
+import { loadDynamicBannerText } from '../components/banner';
+
+document.addEventListener('turbolinks:load', () => {
+  loadDynamicBannerText();
+});

@@ -1,0 +1,16 @@
+.btn-cta{
+    border-radius: 28px;
+    background: rgb(25, 25, 25);
+    border: 2px solid rgb(148, 204, 192);
+    padding: 10px 10px 10px 10px;
+    color: white;
+    transition: 1.0s;
+}
+  .btn-cta:hover {
+    // background: rgb(148, 204, 192);
+    background-image: linear-gradient(75deg,#0d93e0,#00c4c4);
+    border: 2px solid white;
+    color: white;
+    text-decoration: none;
+  }
+  
