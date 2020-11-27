@@ -1,0 +1,4 @@
+class Mode < ApplicationRecord
+
+end
+  

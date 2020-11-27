@@ -1,7 +1,7 @@
 <h1>Button <%= @button %></h1>
 <h3>Your Button's name:</h3><section data-testid="button-name"><h4> <%= @button.name %></h4> </section>
 <div data-testid="button-actions" class="d-flex justify-content-between flex-wrap">
-  <%= link_to "Change name", edit_button_path(@button), class: "btn btn-secondary col-12 col-md-4 col-lg-3 mb-2" %>
+  <%= link_to "Configure button", edit_button_path(@button), class: "btn btn-secondary col-12 col-md-4 col-lg-3 mb-2" %>
   <%= link_to "All my buttons", all_my_buttons_button_path(@button), class: "btn btn-secondary col-12 col-md-4 col-lg-3 mb-2" %>
   <%= link_to "raw report", report_button_path(@button), class: "btn btn-secondary col-12 col-md-4 col-lg-3 mb-2" %>
 </div>
