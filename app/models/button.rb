@@ -22,4 +22,8 @@ class Button < ApplicationRecord
   def total_count
     events.count
   end
+
+  def activity_by_day
+    (Date.parse("2020-10-01")..Date.today).to_a.map{|date| [date.to_s, rand(5)] }
+  end
 end

@@ -27,6 +27,7 @@ module System
               {
                 name: "Days active",
                 template: "days_active",
+                report_generator: "activity_by_day",
               },
               {
                 name: "Activity spread analysis",
