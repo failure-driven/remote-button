@@ -1,3 +1,9 @@
+# Really important TODO
+
+- [ ] confirm a "good" name
+- [ ] background video on repeat - similar to animated gif - 2 people doing pushups, scan to graphs, scan to people with feeling of succes
+- [ ] actual YouTube video to our project description - use case as above quick pushups, graph, success IoT button for anything - the hardware build - the sofware deploy - button unboxing - inbuilt reports - future direction - call to action build it now get invovled
+
 # TODO
 
 - [ ] prod emails working

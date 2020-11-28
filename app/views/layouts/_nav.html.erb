@@ -24,6 +24,12 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="#">Register <span class="sr-only">(current)</span></a>
+      <%= link_to home_build_path, class: "nav-item nav-link" do %>
+        Build
+      <% end %>
+      <%= link_to home_server_path, class: "nav-item nav-link" do %>
+        Server
+      <% end %>
       <a class="nav-item nav-link" href="#">Guide</a>
       <a class="nav-item nav-link" href="#">Contact</a>
         <% if @button && !@button.new_record? %>

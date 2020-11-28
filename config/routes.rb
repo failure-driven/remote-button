@@ -11,6 +11,14 @@ Rails.application.routes.draw do
       get :all_my_buttons
     end
   end
+  # resource :home do
+  #   member do
+  #     get :build
+  #     get :server
+  #   end
+  # end
+  get "/home/build", to: "home#build"
+  get "/home/server", to: "home#server"
 
   get "test_root", to: "rails/welcome#index", as: "test_root_rails"
 
