@@ -7,7 +7,7 @@ feature "landing page", js: true do
     end
 
     Then "the see the remote button heading and image" do
-      wait_for { page.find("h1").text.strip }.to eq "Remote Button"
+      wait_for { page.find("h1").text.strip }.to eq "The Remote Button"
       wait_for do
         page.find("[data-testid=\"remote-button-image\"]")["alt"]
       end.to eq "Remote Button"

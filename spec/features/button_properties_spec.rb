@@ -9,7 +9,7 @@ feature "Button properties", js: true do
 
     When "Sam attempts to rename the button" do
       page.within("[data-testid=\"button-actions\"]") do
-        click_on "Change name"
+        click_on "Configure button"
       end
 
       focus_on(:software_button).rename("First Button")
