@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get :report
       post :event
       get :all_my_buttons
+      get :mode_report
     end
   end
   # resource :home do

@@ -25,6 +25,14 @@ class ButtonsController < ApplicationController
     @events = @button.events.page params[:page]
   end
 
+  def mode_report
+    @button = Button.find(params[:id])
+    # @reports = @button.mode.properties["reports"].create_report # which will
+    @mode = Mode.first
+    @reports = @mode.properties["reports"]
+    @data = @mode.properties["dataGeneratorMethod"]
+  end
+
   def edit
     @button = Button.find(params[:id])
   end

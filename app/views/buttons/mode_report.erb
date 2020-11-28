@@ -1,0 +1,18 @@
+<h1><%= @mode.name %></h1>
+
+<div class="d-flex flex-wrap row">
+  <% @reports.each do |report| %>
+    <div class="col-12 col-lg-6">
+      <div class="card">
+        <div class="card-body m-1">
+          <%= render(
+            partial: File.join("reports", report["template"]),
+            locals: {
+              report: @button.report(report["report_generator"])
+            }
+           ) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
