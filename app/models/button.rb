@@ -24,6 +24,6 @@ class Button < ApplicationRecord
   end
 
   def activity_by_day
-    (Date.parse("2020-10-01")..Date.today).to_a.map{|date| [date.to_s, rand(5)] }
+    (Date.parse("2019-11-29")..Date.today).to_a.map{|date| [date.to_s, rand(4)] }
   end
 end
