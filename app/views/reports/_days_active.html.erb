@@ -1,17 +1,8 @@
 <div class="graph">
   <ul class="months">
-      <li>Jan</li>
-      <li>Feb</li>
-      <li>Mar</li>
-      <li>Apr</li>
-      <li>May</li>
-      <li>Jun</li>
-      <li>Jul</li>
-      <li>Aug</li>
-      <li>Sep</li>
-      <li>Oct</li>
-      <li>Nov</li>
-      <li>Dec</li>
+    <% report[:months].each do |month| %>
+      <li><%= month %></li>
+    <% end %>
     </ul>
     <ul class="days">
       <li>Sun</li>
@@ -23,8 +14,8 @@
       <li>Sat</li>
     </ul>
     <ul class="squares">
-      <% report.each do |daily_activity| %>
-        <li data-level="<%= daily_activity[1] %>">
+      <% report[:activity].each do |daily_activity| %>
+        <li data-level="<%= daily_activity[1] %>" data-toggle="popover" data-content="<%= daily_activity[0] %>, <%= daily_activity[2] %>" data-trigger="hover">
         </li>
       <% end %>
     </ul>
