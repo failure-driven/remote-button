@@ -91,4 +91,34 @@ $week-width: calc(#{$square-size} + #{$square-gap});
   background-color: #196127;
 }
 
-//
+// motivational quotes
+
+.modal-inspiration {
+  background: #00F260;
+  background: -webkit-linear-gradient(to right, #0575E6, #00F260);
+  background: linear-gradient(to right, #0575E6, #00F260);
+  border: 1px #187DDE solid;
+  border-radius: 15px;
+  blockquote {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    font-style: italic;
+    margin: 0.25em 1em 0.25em 0;
+    padding: 0.35em 40px;
+    line-height: 1.45;
+    position: relative;
+    color: white;
+    &:before {
+    display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 80px;
+    position: absolute;
+    left: -20px;
+    top: -20px;
+    color: #aaaaaa;
+    }
+  }
+}
+
+

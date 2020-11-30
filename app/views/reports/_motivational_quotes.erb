@@ -1,1 +1,24 @@
-TODO ... generic motivational quotes button and overlay modal or trigger on particular event
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#motivationalQuote">
+  Give me motivation!
+</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="motivationalQuote" tabindex="-1" aria-labelledby="motivationalQuoteLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content modal-inspiration">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <blockquote>Click that damn button!!! <br> Click that damn button!!! <br> Click that damn button!!!</blockquote>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function() {
+  $('#motivationalQuote').modal('show');
+});
+</script>
