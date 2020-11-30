@@ -6,21 +6,27 @@
   border-radius: 50%;
 }
 
-
 // daily activity report
 
 $square-size: 15px;
 $square-gap: 5px;
 $week-width: calc(#{$square-size} + #{$square-gap});
 
-.months { grid-area: months; }
-.days { grid-area: days; }
-.squares { grid-area: squares; }
+.months {
+  grid-area: months;
+}
+.days {
+  grid-area: days;
+}
+.squares {
+  grid-area: squares;
+}
 
 .graph {
   display: inline-grid;
-  grid-template-areas: "empty months"
-                       "days squares";
+  grid-template-areas:
+    "empty months"
+    "days squares";
   grid-template-columns: auto 1fr;
   grid-gap: 10px;
   li {
@@ -30,18 +36,19 @@ $week-width: calc(#{$square-size} + #{$square-gap});
 
 .months {
   display: grid;
-  grid-template-columns: calc(#{$week-width} * 4) /* Jan */
-                         calc(#{$week-width} * 4) /* Feb */
-                         calc(#{$week-width} * 4) /* Mar */
-                         calc(#{$week-width} * 5) /* Apr */
-                         calc(#{$week-width} * 4) /* May */
-                         calc(#{$week-width} * 4) /* Jun */
-                         calc(#{$week-width} * 5) /* Jul */
-                         calc(#{$week-width} * 4) /* Aug */
-                         calc(#{$week-width} * 4) /* Sep */
-                         calc(#{$week-width} * 5) /* Oct */
-                         calc(#{$week-width} * 4) /* Nov */
-                         calc(#{$week-width} * 5) /* Dec */;
+  grid-template-columns:
+    calc(#{$week-width} * 4) /* Jan */
+    calc(#{$week-width} * 4) /* Feb */
+    calc(#{$week-width} * 4) /* Mar */
+    calc(#{$week-width} * 5) /* Apr */
+    calc(#{$week-width} * 4) /* May */
+    calc(#{$week-width} * 4) /* Jun */
+    calc(#{$week-width} * 5) /* Jul */
+    calc(#{$week-width} * 4) /* Aug */
+    calc(#{$week-width} * 4) /* Sep */
+    calc(#{$week-width} * 5) /* Oct */
+    calc(#{$week-width} * 4) /* Nov */
+    calc(#{$week-width} * 5) /* Dec */;
 }
 
 .days,

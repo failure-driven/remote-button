@@ -17,8 +17,10 @@
 
 
 <section data-testid="software-button">
+  <div class="col-12">
   <button
-    class="btn btn-primary btn-block"
+    class="btn btn-primary btn-block btn-huge btn-high-viz-action"
     onClick="this.disabled = true; fetch('<%= event_button_path(@button) %>', { method: 'POST' }).then(() => this.disabled = false)",
   >Button</button>
+  </div
 </section>
