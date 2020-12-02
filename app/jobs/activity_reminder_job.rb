@@ -1,7 +1,7 @@
 class ActivityReminderJob < ApplicationJob
-  queue_as :default
+  queue_as :mailer
 
-  def perform(id)
-    UserMailer.with(button: Button.find(id)).button_registration.deliver_later
+  def perform(button)
+    UserMailer.with(button: button).button_registration.deliver_later
   end
 end

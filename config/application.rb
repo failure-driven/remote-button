@@ -36,6 +36,6 @@ module RemoteButton
       g.orm :active_record, primary_key_type: :uuid
     end
 
-    # config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_adapter = :sidekiq
   end
 end

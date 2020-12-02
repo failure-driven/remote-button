@@ -63,6 +63,7 @@ Check a CI build
    Co-authored-by: Lily Tan <lilyt2995@gmail.com>
    Co-authored-by: Mathieu Longe <mathieu.longe@orange.fr>
    Co-authored-by: Michael Milewski <saramic@gmail.com>
+   Co-authored-by: Christine Schorn <cschorn91@gmail.com>
    ^D
 
    # and setup git to use it
