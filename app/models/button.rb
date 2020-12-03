@@ -24,7 +24,7 @@ class Button < ApplicationRecord
   end
 
   def activity_by_day
-    max = daily_events.values.max
+    max = daily_events.values.max.to_i
 
     bucket = (max / 3) + 1
 
