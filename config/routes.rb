@@ -6,7 +6,7 @@ Sidekiq::Web.use Rack::Auth::Basic do |username, password|
     ::Digest::SHA256.hexdigest(Rails.application.credentials.sidekiq[:username]),
   ) & ActiveSupport::SecurityUtils.secure_compare(
     ::Digest::SHA256.hexdigest(password),
-    ::Digest::SHA256.hexdigest(Rails.application.credentials.sidekiq[:password])
+    ::Digest::SHA256.hexdigest(Rails.application.credentials.sidekiq[:password]),
   )
 end
 

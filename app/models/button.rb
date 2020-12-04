@@ -24,28 +24,31 @@ class Button < ApplicationRecord
   end
 
   def activity_by_day
+    {
+      activity: activity,
+      months: activity_by_day_dates.map { |date| date.strftime("%b") }.uniq,
+    }
+  end
+
+  def activity_by_day_dates
+    start_date = (Date.today - 60.days).beginning_of_week(:sunday)
+    (start_date..Date.today).to_a
+  end
+
+  def bucket
     max = daily_events.values.max.to_i
+    (max / 3) + 1
+  end
 
-    bucket = (max / 3) + 1
-
+  def activity
     actual_activity = Hash[daily_events.map { |date, value| [date, value] }]
-
-    start_date = (Date.today - 60.days).beginning_of_week(start_day = :sunday)
-
-    dates = (start_date..Date.today).to_a
-
-    activity = dates.map do|date|
+    activity_by_day_dates.map do |date|
       [
         date.to_s,
         actual_activity[date] &&
-        (actual_activity[date].to_i / bucket) + 1,
-        actual_activity[date].to_i
-     ]
+          (actual_activity[date].to_i / bucket) + 1,
+        actual_activity[date].to_i,
+      ]
     end
-
-    {
-      activity: activity,
-      months: dates.map { |date| date.strftime("%b")}.uniq,
-    }
   end
 end

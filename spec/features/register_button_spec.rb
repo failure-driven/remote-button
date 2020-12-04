@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Register Button and view results from pressing it", js: true do
+feature "Register Button and view results from pressing it", js: true, perform_enqueued: true do
   scenario "User registers a button and clicks it" do
     Given "Sam is visiting at 9 o'clock on a saturday" do
       travel_to Time.iso8601("2020-11-14T21:00:00")

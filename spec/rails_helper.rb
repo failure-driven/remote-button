@@ -12,6 +12,7 @@ Dir["spec/support/**/*.rb"].each do |file|
 end
 
 require "factory_bot"
+require "sidekiq/testing"
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
