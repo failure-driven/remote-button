@@ -12,7 +12,8 @@
 
 import '../src/style.scss';
 
-import DynamicBannerText from '../components/DynamicBannerText';
+// import DynamicBannerText from '../components/DynamicBannerText';
+import RandomQuoteGenerator from '../components/RandomQuoteGenerator';
 
 require('@rails/ujs').start();
 require('turbolinks').start();
@@ -28,5 +29,6 @@ document.addEventListener('turbolinks:load', () => {
     $('[data-toggle="tooltip"]').tooltip();
     $('[data-toggle="popover"]').popover();
   });
-  DynamicBannerText();
+  // DynamicBannerText() / currently broken and breaks turbolinks js.
+  RandomQuoteGenerator();
 });

@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   #     get :server
   #   end
   # end
+  get "/quotes/sample", to: "quotes#sample"
   get "/home/build", to: "home#build"
   get "/home/server", to: "home#server"
 
