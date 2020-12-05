@@ -1,5 +1,7 @@
+<div class="d-flex justify-content-around">
+  <div class="d-flex flex-column align-items-center"><span class="day-counter"><%= report[:morning_events] %></span><i class="fas fa-cloud-sun day-icon mt-2" id="morning-icon"></i></div>
+  <div class="d-flex flex-column align-items-center"><span class="day-counter"><%= report[:day_events] %></span><i class="fas fa-sun day-icon mt-2" id="day-icon"></i></div>
+  <div class="d-flex flex-column align-items-center"><span class="day-counter"><%= report[:night_events] %></span><i class="fas fa-moon day-icon mt-2" id="night-icon"></i></div>
+</div>
 
-<%= report[:morning_events] %>
-<%= report[:day_events] %>
-<%= report[:night_events] %>
 
