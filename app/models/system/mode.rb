@@ -18,6 +18,7 @@ module System
               {
                 name: "Activity time tracker",
                 template: "counter_activity_time_tracker",
+                report_generator: "counter_activity_time_tracker"
               },
               {
                 name: "Total count",
@@ -66,6 +67,10 @@ module System
                 name: "Days active",
                 template: "days_active",
               },
+              {
+                name: "Activity time tracker",
+                template: "counter_activity_time_tracker",
+              }
             ],
           },
         },
