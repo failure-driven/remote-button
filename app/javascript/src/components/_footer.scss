@@ -1,18 +1,19 @@
 .footer {
-  background: rgba(231, 238, 240, 0);
+  background-color: $dark-bg;
   display: flex;
   // align-items: center;
   justify-content: space-between;
   height: 100px;
-  padding: 0px 50px;
-  color: red;
+  padding: 0px 20px;
+  font-family: 'Courier Prime', monospace;
+  color: $light-text;
 }
 .footer-links {
   display: flex;
   align-items: center;
 }
 .footer-links a {
-  color: black;
+  color: $light-text;
   opacity: 0.15;
   text-decoration: none;
   font-size: 24px;

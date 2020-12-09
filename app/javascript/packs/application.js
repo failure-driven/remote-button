@@ -14,6 +14,7 @@ import '../src/style.scss';
 
 // import DynamicBannerText from '../components/DynamicBannerText';
 import RandomQuoteGenerator from '../components/RandomQuoteGenerator';
+import DynamicProductCard from '../components/DynamicProductCard';
 
 require('@rails/ujs').start();
 require('turbolinks').start();
@@ -30,5 +31,6 @@ document.addEventListener('turbolinks:load', () => {
     $('[data-toggle="popover"]').popover();
   });
   // DynamicBannerText() / currently broken and breaks turbolinks js.
+  DynamicProductCard();
   RandomQuoteGenerator();
 });

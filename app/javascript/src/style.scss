@@ -4,6 +4,7 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 @import "~@fortawesome/fontawesome-free/scss/solid";
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
 
 @import "~bootstrap/scss/bootstrap";
 @import "components/button";
@@ -11,20 +12,11 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 @import "components/card";
 @import "components/footer";
 @import "components/report";
-
+@import "components/3dcard";
 body {
   //   margin: 2px;
   font-family: "Montserrat", sans-serif;
-  //   border: 1px groove red;
-  //   border-radius: 6px;
-  //   animation: mymove 5s infinite;
 }
-
-// @keyframes mymove {
-//   50% {
-//     border-color: #0d93e0;
-//   }
-// }
 
 .navbar {
   text-align: center;

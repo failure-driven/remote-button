@@ -1,18 +1,19 @@
+$dark-bg: rgb(1, 5, 7);
+$light-text: rgb(140, 188, 184);
 .banner {
-  background-image: url("~circle_ink.png");
-  //background: url(../../images/circle_ink.png);
-  // linear-gradient(rgba(203, 206, 211, 0.5),rgba(5, 16, 35, 0.5))
+  //background-image: url("~circle_ink.png");
+  background-color: $dark-bg;
   background-size: cover;
   background-position: center;
-  padding: 150px 0px;
+  padding: 90px 0px;
+  position: relative;
+  color: $light-text;
   h1 {
-    color: black;
-    text-align: left;
-    font-size: 72px;
-    position: absolute;
-    left: 5px;
-    top: 50px;
-    padding-left: 30px;
+    text-transform: uppercase;
+    letter-spacing: 28px;
+    text-shadow: 11px 6px 6px rgb(36, 81, 80);
+    text-align: center;
+    font-size: 45px;
   }
   // .container{
   //     width: 900px;
@@ -21,6 +22,17 @@
   p {
     margin-bottom: 45px;
   }
+}
+.banner::before,
+.banner::after{
+  content: '';
+  position: absolute;
+  bottom: -70px;
+  right: 0;
+  left: 0;
+  height: 100px;
+  background: white;
+  transform: skewY(-3deg);
 }
 @media (max-width: 375px) {
   .banner h1 {

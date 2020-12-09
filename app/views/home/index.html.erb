@@ -1,10 +1,24 @@
 <div class="banner">
   <div class="container text-center">
-    <h1>The Remote Button</h1>
-    <p>
-  <span id="banner-typed-text"></span>
-  </p>
-  <a class="btn-cta" target="_blank" href="https://github.com/failure-driven/remote-button" role="button">find out more</a>
+          <div class="container-esp32">
+        <div class="card-esp32">
+            <div class="esp32">
+                <div class="circle"></div>
+                <%= image_tag(
+                              "arduino-esp32.png",
+                              size: "50x50",
+                              alt: "Arduino ESP-32"
+                              ) %>
+            </div>
+            <div class="info">
+                <h1 class="title">Dynamic Button</h1>
+                <h3>More to the button than meets the eye</h3>
+            </div>
+        </div>
+    </div>
+      <a class="btn-cta" target="_blank" href="https://github.com/failure-driven/remote-button" role="button">find out more</a>
+    
+    <!-- <p><span id="banner-typed-text"></span></p> -->
   </div>
 </div>
 
@@ -45,6 +59,7 @@
       <div class="col-12 mt-5">
         <h2>What is a remote button?</h2>
       </div>
+
       <div class="col-12 col-sm-12 col-lg-3">
         <div class="card">Hardware</div>
       </div>
