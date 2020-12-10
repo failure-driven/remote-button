@@ -23,8 +23,6 @@ require('@rails/activestorage').start();
 require('channels');
 require('bootstrap');
 
-require.context('../images', true);
-
 document.addEventListener('turbolinks:load', () => {
   $(() => {
     $('[data-toggle="tooltip"]').tooltip();

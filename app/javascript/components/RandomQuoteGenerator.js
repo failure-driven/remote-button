@@ -8,7 +8,9 @@ const randomQuote = () => {
 
 const RandomQuoteGenerator = () => {
   const motivationButton = document.getElementById('motivation-button');
-  motivationButton.addEventListener('click', randomQuote);
+  if (motivationButton) {
+    motivationButton.addEventListener('click', randomQuote);
+  }
 };
 
 export default RandomQuoteGenerator;
