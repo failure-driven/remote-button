@@ -21,18 +21,18 @@ class Button < ApplicationRecord
     {
       morning_events: slot_time_events_day(6, 14),
       day_events: slot_time_events_day(14, 22),
-      night_events: slot_time_events_night(22, 6)
+      night_events: slot_time_events_night(22, 6),
     }
   end
 
   private
 
   def slot_time_events_night(start_hour, end_hour)
-    events.select{ |s| s.created_at.hour >= start_hour || s.created_at.hour < end_hour }.count
+    events.select { |s| s.created_at.hour >= start_hour || s.created_at.hour < end_hour }.count
   end
 
   def slot_time_events_day(start_hour, end_hour)
-    events.select{ |s| s.created_at.hour >= start_hour && s.created_at.hour < end_hour }.count
+    events.select { |s| s.created_at.hour >= start_hour && s.created_at.hour < end_hour }.count
   end
 
   def total_count

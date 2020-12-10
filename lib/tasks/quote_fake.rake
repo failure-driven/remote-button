@@ -12,7 +12,7 @@ task :fetch_quotes, %i[quote_url] => :environment do |_, args|
     .flatten
     .filter { |quote| quote[0] == "“" }
     .each do |quote|
-    # puts quote.gsub("“", "").gsub(/”.*$/, "")
+    # puts quote.gsub("“", "").gsub(/”.*$/, "") # rubocop:disable Style/AsciiComments
     puts quote
   end
 
