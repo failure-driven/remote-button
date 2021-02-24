@@ -57,7 +57,7 @@ class Button < ApplicationRecord
   end
 
   def activity
-    actual_activity = Hash[daily_events.map { |date, value| [date, value] }]
+    actual_activity = daily_events.map { |date, value| [date, value] }.to_h
     activity_by_day_dates.map do |date|
       [
         date.to_s,

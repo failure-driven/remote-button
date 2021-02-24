@@ -3,8 +3,7 @@ module ApplicationHelper
     case flash_type.to_sym
     when :notice then "alert-info"
     when :success then "alert-success"
-    when :error then "alert-danger"
-    when :alert then "alert-danger"
+    when :error || :alert then "alert-danger"
     else "alert-#{flash_type}"
     end
   end
