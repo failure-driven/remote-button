@@ -7,7 +7,7 @@ feature "Register Button and view results from pressing it", js: true, perform_e
     end
 
     When "Sam visits the remote button site" do
-      visit root_path
+      visit old_index_home_index_path
     end
 
     Then "Sam sees all the related information about the fine product" do

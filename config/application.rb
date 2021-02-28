@@ -38,5 +38,9 @@ module RemoteButton
     end
 
     config.active_job.queue_adapter = :sidekiq
+
+    config.to_prepare do
+      Devise::Mailer.layout "mailer"
+    end
   end
 end

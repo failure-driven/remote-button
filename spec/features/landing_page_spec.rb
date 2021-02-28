@@ -3,7 +3,7 @@ require "rails_helper"
 feature "landing page", js: true do
   scenario "heading and image of a remote button" do
     When "user visits the landing page" do
-      visit root_path
+      visit old_index_home_index_path
     end
 
     Then "the see the remote button heading and image" do

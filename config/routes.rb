@@ -11,6 +11,7 @@ Sidekiq::Web.use Rack::Auth::Basic do |username, password|
 end
 
 Rails.application.routes.draw do
+  devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   mount Sidekiq::Web => "/admin/sidekiq"
   resource :software_button, only: %i[new create]
@@ -36,5 +37,10 @@ Rails.application.routes.draw do
 
   post "/", to: "buttons#create"
   patch "/", to: "buttons#update"
+  resources :home, only: [:index] do
+    collection do
+      get :old_index
+    end
+  end
   root to: "home#index"
 end
