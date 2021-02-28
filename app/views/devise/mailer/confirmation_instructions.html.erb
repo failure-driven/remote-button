@@ -1,0 +1,9 @@
+<p>Welcome <%= @email %>!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<%= token = @resource.send(:set_reset_password_token) %>
+<%= edit_password_path(@resource, reset_password_token: token) %>
+
+<%= link_to 'login', users_auth_url(@resource, reset_password_token: @token)%>
