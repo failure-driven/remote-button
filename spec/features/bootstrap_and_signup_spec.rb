@@ -37,10 +37,9 @@ feature "Bootstrap and signup", js: true do
     end
 
     And "she needs to wait to be accepted in the beta program" do
-      pending "an acceptance message" # HINT: put something into views/home/index.html
       wait_for do
         page.text
-      end.to include "We hope you will shortly be accepted in to our beta program"
+      end.to include "We hope you will shortly be accepted into our beta program"
     end
 
     When "she signs out" do
@@ -158,11 +157,11 @@ feature "Bootstrap and signup", js: true do
       wait_for do
         page
           .find_all("tbody tr")
-          .map{|tr| keys.zip(tr.find_all("td").map(&:text)).to_h.slice("Email") }
+          .map { |tr| keys.zip(tr.find_all("td").map(&:text)).to_h.slice("Email") }
       end.to contain_exactly(
-        {"Email"=>"lara.setrakian@newsdeeply.com"},
-        {"Email"=>"carly.zakin@the.skimm.com"},
-        {"Email"=>"jocelyn.leavitt@hopscotch.com"},
+        { "Email" => "lara.setrakian@newsdeeply.com" },
+        { "Email" => "carly.zakin@the.skimm.com" },
+        { "Email" => "jocelyn.leavitt@hopscotch.com" },
       )
     end
   end

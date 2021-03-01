@@ -6,6 +6,7 @@
 
 <% if signed_in? %>
   <!-- content for siged in users -->
+  <p>We hope you will shortly be accepted into our beta program</p>
 <% else %>
   <div class="col-md-6 mx-auto">
     <%= form_for(@user, url: registration_path(@user)) do |f| %>

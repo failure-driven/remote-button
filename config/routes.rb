@@ -24,20 +24,20 @@ end
 
 Rails.application.routes.draw do
   namespace :admin do
-      resources :users
-      resources :modes
-      resources :buttons
-      resources :events
+    resources :users
+    resources :modes
+    resources :buttons
+    resources :events
 
-      root to: "users#index"
-    end
+    root to: "users#index"
+  end
   devise_for :users, controllers: {
     confirmations: "users/confirmations",
   }
 
   mount Sidekiq::Web => "/admin/sidekiq"
 
-  mount flipper_app, at: '/flipper'
+  mount flipper_app, at: "/flipper"
 
   resource :software_button, only: %i[new create]
   resources :buttons, only: %i[show edit update] do
