@@ -37,6 +37,15 @@ gem "devise"
 # administration
 gem "administrate"
 
+# Feature flipping
+# Flipper
+gem "flipper"
+# UI
+gem "flipper-ui"
+# Adapter
+gem "flipper-active_record"
+
+
 # Pagination
 gem "kaminari"
 

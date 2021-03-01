@@ -128,6 +128,15 @@ GEM
       factory_bot (~> 6.1.0)
       railties (>= 5.0.0)
     ffi (1.14.2)
+    flipper (0.20.3)
+    flipper-active_record (0.20.3)
+      activerecord (>= 5.0, < 7)
+      flipper (~> 0.20.3)
+    flipper-ui (0.20.3)
+      erubi (>= 1.0.0, < 2.0.0)
+      flipper (~> 0.20.3)
+      rack (>= 1.4, < 3)
+      rack-protection (>= 1.5.3, < 2.2.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     htmlentities (4.3.4)
@@ -206,6 +215,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
+    rack-protection (2.1.0)
+      rack
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -369,6 +380,9 @@ DEPENDENCIES
   database_cleaner
   devise
   factory_bot_rails
+  flipper
+  flipper-active_record
+  flipper-ui
   jbuilder (~> 2.7)
   kaminari
   letter_opener

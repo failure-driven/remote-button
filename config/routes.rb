@@ -10,6 +10,18 @@ Sidekiq::Web.use Rack::Auth::Basic do |username, password|
   )
 end
 
+flipper_app = Flipper::UI.app(Flipper.instance) do |builder|
+  builder.use Rack::Auth::Basic do |username, password|
+    ActiveSupport::SecurityUtils.secure_compare(
+      ::Digest::SHA256.hexdigest(username),
+      ::Digest::SHA256.hexdigest(Rails.application.credentials.flipper[:username]),
+    ) & ActiveSupport::SecurityUtils.secure_compare(
+      ::Digest::SHA256.hexdigest(password),
+      ::Digest::SHA256.hexdigest(Rails.application.credentials.flipper[:password]),
+    )
+  end
+end
+
 Rails.application.routes.draw do
   namespace :admin do
       resources :users
@@ -22,8 +34,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     confirmations: "users/confirmations",
   }
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
   mount Sidekiq::Web => "/admin/sidekiq"
+
+  mount flipper_app, at: '/flipper'
+
   resource :software_button, only: %i[new create]
   resources :buttons, only: %i[show edit update] do
     member do
