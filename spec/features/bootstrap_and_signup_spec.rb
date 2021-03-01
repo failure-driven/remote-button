@@ -77,4 +77,93 @@ feature "Bootstrap and signup", js: true do
       )
     end
   end
+
+  scenario "remote button admin Lara Setrakian administers some users" do
+    Given "Lara Setrakian from Newsdeeply fame joins the button team as an admin" do
+      # HINT: create user email: "lara.setrakian@newsdeeply.com" or something similar
+    end
+
+    When "Lara goes to administer the site" do
+      visit admin_users_path
+    end
+
+    Then "she is told to log in" do
+      pending "having authentication on admin"
+
+      # HINT: look at admin/application_controller and work out devise authentication
+      wait_for do
+        find(".alert span").text
+      end.to eq "You need to sign in or sign up before continuing."
+    end
+
+    When "she logs in and goes to administer the site" do
+      # HINT: you may need to create a confirmed user in the Given block above and make sure the test
+      #       passwords match
+      find("form#new_user").fill_in("Email", with: "lara.setrakian@newsdeeply.com")
+      find("form#new_user").fill_in("Password", with: "1password")
+      find("form#new_user").find('input[type="submit"]').click
+    end
+
+    Then "she is told she needs admin priveledges" do
+      # HINT: authenticate and authorize admin in admin/application_controller
+      wait_for do
+        find(".alert span").text
+      end.to eq "You are not authorized to do that."
+    end
+
+    When "she finally logs in with admin priveledges" do
+      # HINT: do something to the Lara User model to make it authorized
+      #       User.find_by(email: "lara.setrakian@newsdeeply.com").auhtorize...
+      find("form#new_user").fill_in("Email", with: "lara.setrakian@newsdeeply.com")
+      find("form#new_user").fill_in("Password", with: "1password")
+      find("form#new_user").find('input[type="submit"]').click
+    end
+
+    Then "she sees there are no users registered" do
+      wait_for do
+        page.find_all("tbody tr")
+      end.to be_empty # actually she will be a user there
+    end
+
+    When "2 other users sign up" do
+      # sign out as Lara
+      page.find(".navigation a", text: "Back to app").click
+      page.find("nav .nav-link", text: "Sign out").click
+
+      # HINT: this could go in a page fragment or a macro that calls a number of page fragments
+      # sign up as Carly
+      find("form#new_user").fill_in("Email", with: "carly.zakin@the.skimm.com")
+      find("form#new_user").find('input[type="submit"]').click
+      open_email "carly.zakin@the.skimm.com"
+      current_email.click_link "CONFIRM MY ACCOUNT"
+      page.find("nav .nav-link", text: "Sign out").click
+
+      # sign up as Jocelyn
+      find("form#new_user").fill_in("Email", with: "jocelyn.leavitt@hopscotch.com")
+      find("form#new_user").find('input[type="submit"]').click
+      open_email "jocelyn.leavitt@hopscotch.com"
+      current_email.click_link "CONFIRM MY ACCOUNT"
+      page.find("nav .nav-link", text: "Sign out").click
+    end
+
+    And "Lara logs in again" do
+      visit admin_users_path
+      find("form#new_user").fill_in("Email", with: "lara.setrakian@newsdeeply.com")
+      find("form#new_user").fill_in("Password", with: "1password")
+      find("form#new_user").find('input[type="submit"]').click
+    end
+
+    Then "she can see the new sign ups" do
+      keys = page.find_all("thead tr th").map(&:text)
+      wait_for do
+        page
+          .find_all("tbody tr")
+          .map{|tr| keys.zip(tr.find_all("td").map(&:text)).to_h.slice("Email") }
+      end.to contain_exactly(
+        {"Email"=>"lara.setrakian@newsdeeply.com"},
+        {"Email"=>"carly.zakin@the.skimm.com"},
+        {"Email"=>"jocelyn.leavitt@hopscotch.com"},
+      )
+    end
+  end
 end

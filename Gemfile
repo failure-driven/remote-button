@@ -34,6 +34,9 @@ gem "rubocop"
 # user management
 gem "devise"
 
+# administration
+gem "administrate"
+
 # Pagination
 gem "kaminari"
 

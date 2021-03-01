@@ -11,6 +11,14 @@ Sidekiq::Web.use Rack::Auth::Basic do |username, password|
 end
 
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :users
+      resources :modes
+      resources :buttons
+      resources :events
+
+      root to: "users#index"
+    end
   devise_for :users, controllers: {
     confirmations: "users/confirmations",
   }
