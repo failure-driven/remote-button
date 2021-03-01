@@ -37,5 +37,18 @@
         </li>
       <% end %>
     </div>
+    <ul class="navbar-nav ml-auto">
+      <% if signed_in? %>
+        <span class="nav-link">
+          <%= current_user.email %>
+        </span>
+        <%= link_to(
+          'Sign out',
+          destroy_user_session_path,
+          method: :delete,
+          class: "btn btn-primary nav-link"
+          ) %>
+      <% end %>
+    </ul>
   </div>
 </nav>

@@ -1,19 +1,22 @@
-<div class="col-md-6 mx-auto">
-  <%= form_for(@user, url: registration_path(@user)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: @user %>
+<% if signed_in? %>
+  <!-- content for siged in users -->
+<% else %>
+  <div class="col-md-6 mx-auto">
+    <%= form_for(@user, url: registration_path(@user)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: @user %>
 
-  <div class="field form-group">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, class: "form-control", autocomplete: "email" %>
+    <div class="field form-group">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, class: "form-control", autocomplete: "email" %>
+    </div>
+
+    <%= f.hidden_field :password, autocomplete: "new-password" %>
+
+    <%= f.hidden_field :password_confirmation, autocomplete: "new-password" %>
+
+    <div class="actions">
+      <%= f.submit "Sign up", class: "btn btn-primary" %>
+    </div>
+    <% end %>
   </div>
-
-  <%= f.hidden_field :password, autocomplete: "new-password" %>
-
-  <%= f.hidden_field :password_confirmation, autocomplete: "new-password" %>
-
-  <div class="actions">
-    <%= f.submit "Sign up", class: "btn btn-primary" %>
-  </div>
-  <% end %>
-</div>
-
+<% end %>
