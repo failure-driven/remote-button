@@ -4,6 +4,6 @@
 
 <%= render partial: "./layouts/email_safe_button", locals: {
   label: "CONFIRM MY ACCOUNT",
-  href: user_passwordless_confirmation_url(@resource, confirmation_token: @token),
+  href: user_confirmation_url(confirmation_token: @token),
   align: "center"
 } %>

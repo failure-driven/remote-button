@@ -11,10 +11,9 @@ Sidekiq::Web.use Rack::Auth::Basic do |username, password|
 end
 
 Rails.application.routes.draw do
-  devise_for :users
-  devise_scope :user do
-    get "/user/passwordless/confirmation/:id" => "user/passwordless#confirmation", as: :user_passwordless_confirmation
-  end
+  devise_for :users, controllers: {
+    confirmations: "users/confirmations",
+  }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   mount Sidekiq::Web => "/admin/sidekiq"
   resource :software_button, only: %i[new create]
