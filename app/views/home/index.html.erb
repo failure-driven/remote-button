@@ -4,6 +4,28 @@
   </p>
 <% end %>
 
+<% if Flipper.enabled?(:beta_button, current_user) %>
+  <div class="col-md-6 mx-auto">
+    <p style="font-size: 4em">
+      Congratulations!
+    </p>
+    <p class="center-text">
+      <strong>
+        you are part of the Beta
+      </strong>
+    </p>
+    <p>
+      <i>more information coming your way soon</i>
+    </p>
+  </div>
+<% else %>
+  <div class="col-md-6 mx-auto">
+    <p>
+      <i>Sorry not part of beta yet</i>
+    </p>
+  </div>
+<% end %>
+
 <% if signed_in? %>
   <!-- content for siged in users -->
   <p>We hope you will shortly be accepted into our beta program</p>

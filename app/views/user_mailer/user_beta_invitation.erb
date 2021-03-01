@@ -1,0 +1,13 @@
+<p>Hi there,</p>
+
+<p>You are one of the lucky ones to get a Beta invitations to Remote Button</p>
+
+<p>Accept the beta in the next 24 hours to try out a button</p>
+
+<%= render partial: "email_safe_button", locals: {
+  label: "ACCEPT BETA",
+href: enable_flip_home_index_url(token: @token, reset_token: @reset_token),
+  align: "center"
+} %>
+
+<p>the Remote Button Team</p>

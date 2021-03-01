@@ -45,6 +45,8 @@ gem "flipper-ui"
 # Adapter
 gem "flipper-active_record"
 
+gem "jwt"
+
 # Pagination
 gem "kaminari"
 

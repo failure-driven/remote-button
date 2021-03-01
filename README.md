@@ -13,6 +13,7 @@ For every home needs at least 1 internet connected button.
 ```
 make build
 rails server
+sidekiq -q mailers -q default
 open http://localhost:3000
 ```
 

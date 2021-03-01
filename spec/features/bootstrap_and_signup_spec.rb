@@ -165,4 +165,94 @@ feature "Bootstrap and signup", js: true do
       )
     end
   end
+
+  scenario "some users are invited to the beta" do
+    When "Gina Trapani from Lifehacker signs up" do
+      visit root_path
+      find("form#new_user").fill_in("Email", with: "gina.trapani@lifehacker.com")
+      find("form#new_user").find('input[type="submit"]').click
+      open_email "gina.trapani@lifehacker.com"
+      current_email.click_link "CONFIRM MY ACCOUNT"
+    end
+
+    Then "she sees she is not yet part of the beta and signs out" do
+      wait_for do
+        find(".alert span").text
+      end.to eq "Your email address has been successfully confirmed."
+      wait_for { page.text }.to include "not part of beta yet"
+      page.find("nav .nav-link", text: "Sign out").click
+    end
+
+    When "Pooja Sankar from Piazza signs up" do
+      find("form#new_user").fill_in("Email", with: "pooja.sankar@piazza.com")
+      find("form#new_user").find('input[type="submit"]').click
+      open_email "pooja.sankar@piazza.com"
+      current_email.click_link "CONFIRM MY ACCOUNT"
+    end
+
+    Then "she sees she is not yet part of the beta and signs out" do
+      wait_for do
+        find(".alert span").text
+      end.to eq "Your email address has been successfully confirmed."
+      wait_for { page.text }.to include "not part of beta yet"
+      page.find("nav .nav-link", text: "Sign out").click
+    end
+
+    When "an admin invites Gina to the beta" do
+      # HINT: this will break when an admin needs authorization
+      visit admin_users_path
+      page.find("td", text: "gina.trapani@lifehacker.com").click
+      page.find(".form-actions a", text: "Send Beta Invitation Email").click
+    end
+
+    And "Gina clicks on the accept beta invitation link" do
+      open_email "gina.trapani@lifehacker.com"
+      current_email.click_link "ACCEPT BETA"
+    end
+
+    Then "she is logged in" do
+      wait_for do
+        find(".alert span").text
+      end.to eq "Congratulations you are now part of the Button Beta."
+
+      wait_for do
+        page.find_all("nav .nav-link").map(&:text)
+      end.to contain_exactly(
+        "gina.trapani@lifehacker.com",
+        "Sign out",
+      )
+    end
+
+    And "she sees she is part of the beta and signs out" do
+      wait_for { page.text }.to include "you are part of the Beta"
+      page.find("nav .nav-link", text: "Sign out").click
+    end
+
+    When "Pooja visits again" do
+      find("form#new_user").fill_in("Email", with: "pooja.sankar@piazza.com")
+      find("form#new_user").find('input[type="submit"]').click
+      page.find("a", text: "Log in").click
+    end
+
+    And "goes through resetting her password" do
+      page.find("a", text: "Forgot your password?").click
+      page.find("form#new_user").fill_in("Email", with: "pooja.sankar@piazza.com")
+      find("form#new_user").find('input[type="submit"]').click
+      open_email "pooja.sankar@piazza.com"
+      current_email.click_link "Change my password"
+      find("form#new_user").fill_in("New password", with: "1password")
+      find("form#new_user").fill_in("Confirm new password", with: "1password")
+      find("form#new_user").find('input[type="submit"]').click
+    end
+
+    Then "she is logged in successfully" do
+      wait_for do
+        find(".alert span").text
+      end.to eq "Your password has been changed successfully. You are now signed in."
+    end
+
+    And "she sees she is still not part of the beta" do
+      wait_for { page.text }.to include "not part of beta yet"
+    end
+  end
 end

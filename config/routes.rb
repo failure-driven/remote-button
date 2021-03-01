@@ -24,7 +24,11 @@ end
 
 Rails.application.routes.draw do
   namespace :admin do
-    resources :users
+    resources :users do
+      member do
+        get :send_beta_invitation
+      end
+    end
     resources :modes
     resources :buttons
     resources :events
@@ -65,6 +69,8 @@ Rails.application.routes.draw do
   resources :home, only: [:index] do
     collection do
       get :old_index
+      get :enable_flip
+      get :disable_flip
     end
   end
   root to: "home#index"
