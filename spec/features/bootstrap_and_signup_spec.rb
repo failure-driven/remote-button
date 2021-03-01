@@ -28,8 +28,6 @@ feature "Bootstrap and signup", js: true do
         find(".alert span").text
       end.to eq "Your email address has been successfully confirmed."
 
-      pending "an initial sign up specific header"
-
       wait_for do
         page.find_all("nav .nav-link").map(&:text)
       end.to contain_exactly(
@@ -39,6 +37,7 @@ feature "Bootstrap and signup", js: true do
     end
 
     And "she needs to wait to be accepted in the beta program" do
+      pending "an acceptance message" # HINT: put something into views/home/index.html
       wait_for do
         page.text
       end.to include "We hope you will shortly be accepted in to our beta program"
