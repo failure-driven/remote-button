@@ -54,39 +54,6 @@
       <%= yield %>
     </main>
 
-    <footer class="signup-footer">
-      <ul class="justify-content-center nav">
-        <li>
-          <a class="nav-link" href="#">
-            Contact Us
-          </a>
-        </li>
-        <li>
-          <a class="nav-link" href="#">
-            About Us
-          </a>
-        </li>
-        <li>
-          <a class="nav-link" href="#">
-            Terms
-          </a>
-        </li>
-        <li>
-          <a class="nav-link" href="#">
-            Privacy Policy
-          </a>
-        </li>
-        <li>
-          <a class="nav-link" href="#">
-            Cookies Policy
-          </a>
-        </li>
-      </ul>
-      <div class="row footer-inner">
-        <div class="text-center col">
-          Remote Button © Copyright remote-button 2021
-        </div>
-      </div>
-    </footer>
+    <%= render partial: "layouts/footer" %>
   </body>
 </html>

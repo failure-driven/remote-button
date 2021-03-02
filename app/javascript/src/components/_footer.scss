@@ -1,24 +1,7 @@
 .footer {
-  background-color: $dark-bg;
-  display: flex;
-  // align-items: center;
-  justify-content: space-between;
-  height: 100px;
-  padding: 0px 20px;
-  font-family: 'Courier Prime', monospace;
-  color: $light-text;
-}
-.footer-links {
-  display: flex;
-  align-items: center;
-}
-.footer-links a {
-  color: $light-text;
-  opacity: 0.15;
-  text-decoration: none;
-  font-size: 24px;
-  padding: 0px 10px;
-}
-.footer-links a:hover {
-  opacity: 1;
+  background-color: rgb(250, 251, 252);
+  font-size: 12px;
+  a {
+    @extend .text-secondary;
+  }
 }
