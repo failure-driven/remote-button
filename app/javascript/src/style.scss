@@ -8,16 +8,21 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
 
 @import "~bootstrap/scss/bootstrap";
-@import "signup";
 @import "components/button";
 @import "components/banner";
 @import "components/card";
 @import "components/footer";
 @import "components/report";
 @import "components/3dcard";
+
 body {
-  //   margin: 2px;
   font-family: "Montserrat", sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .container-fluid {
+    flex: 1;
+  }
 }
 
 .navbar {
@@ -34,4 +39,10 @@ body {
 .btn-high-viz-action:disabled {
   background-color: red;
   border-color: red;
+}
+
+.pre-container {
+  .jumbotron {
+    border-radius: 0;
+  }
 }

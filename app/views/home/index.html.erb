@@ -1,3 +1,19 @@
+<% content_for :pre_container do %>
+  <div class="jumbotron bg-secondary text-white">
+    <div class="container">
+      <div>
+        <h1 class="display-text stronger">Remote Button</h1>
+      </div>
+      <p class="display-text">
+        Press the internet whereever you are
+      </p>
+      <div>
+      <%= link_to 'Sign up for free', new_user_registration_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <% if Flipper.enabled?(:b_e_n_s_a_y_s) %>
   <p style="font-size: 10em">
     B E N S A Y S

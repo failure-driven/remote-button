@@ -13,11 +13,15 @@ feature "Button modes", js: true do
     end
 
     And "another 10 at 9:10pm" do
+      # wait for last button press to complete before bumping time
+      wait_for { page.find("button", text: "Button")["disabled"] }.to eq("false")
       travel_to Time.iso8601("2020-11-14T21:10:00")
       focus_on(:software_button).click(number_of_times: 10, every: 2.seconds)
     end
 
     And "another 10 at 10am on Sunday, the next week" do
+      # wait for last button press to complete before bumping time
+      wait_for { page.find("button", text: "Button")["disabled"] }.to eq("false")
       travel_to Time.iso8601("2020-11-22T13:00:00")
       focus_on(:software_button).click(number_of_times: 10, every: 2.seconds)
     end

@@ -31,6 +31,11 @@ feature "Bootstrap and signup", js: true do
       wait_for do
         page.find_all("nav .nav-link").map(&:text)
       end.to contain_exactly(
+        "Build",
+        "Contact",
+        "Guide",
+        "Register\n(current)",
+        "Server",
         "melanie.perkins@canva.com",
         "Sign out",
       )
@@ -218,6 +223,11 @@ feature "Bootstrap and signup", js: true do
       wait_for do
         page.find_all("nav .nav-link").map(&:text)
       end.to contain_exactly(
+        "Build",
+        "Contact",
+        "Guide",
+        "Register\n(current)",
+        "Server",
         "gina.trapani@lifehacker.com",
         "Sign out",
       )
@@ -231,7 +241,7 @@ feature "Bootstrap and signup", js: true do
     When "Pooja visits again" do
       find("form#new_user").fill_in("Email", with: "pooja.sankar@piazza.com")
       find("form#new_user").find('input[type="submit"]').click
-      page.find("a", text: "Log in").click
+      page.find("form#new_user").sibling("a", text: "Log in").click
     end
 
     And "goes through resetting her password" do

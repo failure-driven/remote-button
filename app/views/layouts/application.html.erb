@@ -15,12 +15,20 @@
   </head>
 
   <body>
+
     <%= render partial: "layouts/nav" %>
 
     <%= flash_messages %>
-      <main class="container">
-        <%= yield %>
-      </main>
-      <%= render partial: "layouts/footer" %>
+
+    <div class="pre-container">
+      <%= yield :pre_container %>
+    </div>
+
+    <main class="container-fluid container">
+      <%= yield %>
+    </main>
+
+    <%= render partial: "layouts/footer" %>
+
   </body>
 </html>

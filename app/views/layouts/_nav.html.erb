@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/">
     <%= image_tag(
             "remote_button_drawn_01.png",
@@ -9,46 +9,64 @@
             }
             ) %>
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="" data-oldclass="navbar-toggler-icon">
-      <%= image_tag(
-              "on.png",
-              size: "30x30",
-              alt: "placeholder for menu bar",
-              data: {
-                testid: "placeholder-image"
-              }
-              ) %>
-    </span>
-  </button>
+
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="#">Register <span class="sr-only">(current)</span></a>
-      <%= link_to home_build_path, class: "nav-item nav-link" do %>
-        Build
-      <% end %>
-      <%= link_to home_server_path, class: "nav-item nav-link" do %>
-        Server
-      <% end %>
-      <a class="nav-item nav-link" href="#">Guide</a>
-      <a class="nav-item nav-link" href="#">Contact</a>
+      <% if signed_in? && current_user %>
+        <a class="nav-item nav-link active" href="#">Register <span class="sr-only">(current)</span></a>
+        <%= link_to home_build_path, class: "nav-item nav-link" do %>
+          Build
+        <% end %>
+        <%= link_to home_server_path, class: "nav-item nav-link" do %>
+          Server
+        <% end %>
+        <a class="nav-item nav-link" href="#">Guide</a>
+        <a class="nav-item nav-link" href="#">Contact</a>
         <% if @button && !@button.new_record? %>
           <a class="nav-item nav-link" href="<%= button_path(@button) %>">Button</a>
-        </li>
+        <% end %>
+      <% end %>
+      <% if @button && !@button.new_record? %>
+        <a class="nav-item nav-link" href="<%= button_path(@button) %>">
+          Button
+        </a>
       <% end %>
     </div>
-    <ul class="navbar-nav ml-auto">
-      <% if signed_in? %>
+  </div>
+
+  <ul class="navbar-nav ml-auto" style="flex-direction: row;">
+    <% if signed_in? %>
+      <li class="mt-2">
         <span class="nav-link">
           <%= current_user.email %>
         </span>
-        <%= link_to(
-          'Sign out',
-          destroy_user_session_path,
-          method: :delete,
-          class: "btn btn-primary nav-link"
-          ) %>
-      <% end %>
-    </ul>
-  </div>
+      </li>
+      <li class="nav-link">
+        <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
+      </li>
+    <% else %>
+      <li class="nav-link">
+        <%= link_to 'Log in', new_user_session_path, class: "btn" %>
+      </li>
+      <li class="nav-link">
+        <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-primary" %>
+      </li>
+    <% end %>
+  </ul>
+
+  <% if signed_in? && current_user %>
+    <button class="navbar-toggler ml-3" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="" data-oldclass="navbar-toggler-icon">
+        <%= image_tag(
+                "on.png",
+                size: "30x30",
+                alt: "placeholder for menu bar",
+                data: {
+                  testid: "placeholder-image"
+                }
+                ) %>
+      </span>
+    </button>
+  <% end %>
+
 </nav>
