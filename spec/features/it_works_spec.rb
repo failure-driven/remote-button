@@ -10,7 +10,7 @@ feature "It works", js: true do
       wait_for { focus_on(:welcome).message_and_versions }.to include(
         message: "Yay! You’re on Rails!",
         rails_version: match(/^6.1.3/),
-        ruby_version: match(/^ruby 3.0.0/),
+        ruby_version: match(/^ruby 3.0.2/),
       )
     end
   end

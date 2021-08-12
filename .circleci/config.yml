@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/remote-button
     docker:
-      - image: circleci/ruby:3.0.0-buster-node-browsers
+      - image: circleci/ruby:3.0.2-buster-node-browsers
         environment:
           PGHOST: localhost
           PGUSER: your-app-name
