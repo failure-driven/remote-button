@@ -36,3 +36,5 @@ yarn-debug.log*
 .yarn-integrity
 
 .vscode
+.idea
+.DS_Store
