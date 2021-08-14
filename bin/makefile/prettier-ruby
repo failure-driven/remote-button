@@ -5,7 +5,7 @@ require_relative "changes"
 changes = Changes.all do |file|
   return false if file == "db/schema.rb"
 
-  file.end_with?(".rb")
+  file.end_with?(".rb", ".rake", ".jbuilder")
 end
 
 if changes.empty?

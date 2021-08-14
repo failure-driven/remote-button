@@ -18,10 +18,10 @@ check: check-tools
 setup: check
 	bin/setup
 
-rubocop_fix_all:
+rubocop-fix-all:
 	bundle exec rubocop -a .
 
-prettier_ruby:
+prettier:
 	bin/makefile/prettier-ruby
 
 .PHONY: build
