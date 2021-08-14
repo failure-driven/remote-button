@@ -10,11 +10,21 @@ For every home needs at least 1 internet connected button.
 
 # TL;DR
 
+use the make file to setup and run the tests
+
 ```
 make
 make setup
 make build
 ```
+
+populate your database with some data
+
+```
+rails fake_data
+```
+
+run the development server
 
 ```
 rails server
