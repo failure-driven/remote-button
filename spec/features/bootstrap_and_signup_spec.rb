@@ -15,7 +15,7 @@ feature "Bootstrap and signup", js: true do
       wait_for do
         find(".alert span").text
       end.to eq "A message with a confirmation link has been sent to your email address." \
-       " Please follow the link to activate your account."
+                " Please follow the link to activate your account."
     end
 
     When "she accepts the link in the email" do
