@@ -11,8 +11,14 @@ For every home needs at least 1 internet connected button.
 # TL;DR
 
 ```
+make
+make setup
 make build
+```
+
+```
 rails server
+bin/webpack-dev-server
 sidekiq -q mailers -q default
 open http://localhost:3000
 ```

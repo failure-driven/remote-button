@@ -13,6 +13,8 @@ _usage() {
   echo
   echo -e "${GREEN}Workflow${NC}"
   echo
+  echo -e "${YELLOW}make setup${NC}           runs bin/setup to setup the project"
+  echo
   echo -e "${YELLOW}make prettier_ruby${NC}   rubocop any modified files"
   echo -e "${YELLOW}make rubocop_fix_all${NC} rubocop and auto-correct all files"
   echo -e "${YELLOW}make build${NC}           run linting and full build"
@@ -20,6 +22,12 @@ _usage() {
   echo -e "${GREEN}Generate some data${NC}"
   echo
   echo -e "${YELLOW}rails fake_data${NC}      generate some buttons and events"
+  echo
+  echo -e "${GREEN}Setup${NC}"
+  echo
+  echo -e "${YELLOW}make setup${NC}           setup the environment"
+  echo -e "${YELLOW}make check${NC}           check if you have everything to run the development server"
+  echo -e "${YELLOW}make install${NC}         attempt to install everything you need to run the server"
   echo
   echo -e "${GREEN}Deploy to Heroku${NC}"
   echo

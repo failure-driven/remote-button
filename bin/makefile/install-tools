@@ -1,0 +1,36 @@
+#!/usr/bin/env zsh
+
+set -e
+
+install_and_update_asdf_plugin() {
+  echo "installing $1 asdf plugin"
+  asdf plugin-add "$1" || echo "asdf $1 plugin is already installed"
+  asdf plugin-update "$1"
+  # speical case for nodejs on M1 arm64 needs arch -x86_64 flag
+  if [[ "$(uname -m)" == "arm64" && $1 == "nodejs" ]]; then
+    arch -x86_64 asdf install $1
+  fi
+}
+
+if [[ "$(uname)" == "Darwin" ]]; then
+  # TODO: probably ask user to run these
+  # brew upgrade
+  # brew bundle
+  # brew cleanup
+else
+  # TODO: probably do something here and don't just exit
+  # echo "Unsupported system: $(uname)"
+  # exit 1
+fi
+
+# from https://asdf-vm.com/#/core-manage-asdf
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1 || echo "asdf already installed"
+source ~/.asdf/asdf.sh
+asdf update
+
+for plugin in nodejs postgres python redis ruby yarn
+do
+  install_and_update_asdf_plugin $plugin
+done
+asdf install
+

@@ -1,8 +1,22 @@
 PROJECT := remote-button
 
 default: usage
+
+install-tools:
+	bin/makefile/install-tools
+
+install: install-tools
+
 usage:
 	bin/makefile/usage
+
+check-tools:
+	bin/makefile/check-tools
+
+check: check-tools
+
+setup: check
+	bin/setup
 
 rubocop_fix_all:
 	bundle exec rubocop -a .
