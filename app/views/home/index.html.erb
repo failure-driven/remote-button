@@ -5,7 +5,7 @@
         <h1 class="display-text stronger">Remote Button</h1>
       </div>
       <p class="display-text">
-        Press the internet whereever you are
+        Press the internet wherever you are
       </p>
       <div>
       <%= link_to 'Sign up for free', new_user_registration_path, class: "btn btn-primary" %>
@@ -19,6 +19,20 @@
     B E N S A Y S
   </p>
 <% end %>
+
+<section data-testid="demo-section">
+  <div class="card">
+    <div class="card-header" data-testid="title">
+      Demo software button
+    </div>
+    <div class="card-body">
+      <%= render partial: "demo_button" %>
+    </div>
+    <div class="card-footer" data-testid="footer">
+      Note: other users may be interacting with this same button and affect the outcome.
+    </div>
+  </div>
+</section>
 
 <% if Flipper.enabled?(:beta_button, current_user) %>
   <div class="col-md-6 mx-auto">
