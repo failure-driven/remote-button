@@ -1,7 +1,6 @@
 module PageFragments
-  Page = Struct.new :rspec_example do
-    # Capybara DSL + rspec example context
-    alias_method :browser, :rspec_example
+  Page = Struct.new(:rspec_example) do
+    alias_method :page, :rspec_example
   end
 
   module DelegateSynchronize
@@ -10,17 +9,17 @@ module PageFragments
     end
   end
 
-  def classify(string)
-    string.to_s.split("_").map(&:capitalize).join
-  end
-
   def focus_on(*args)
-    require File.join(__dir__, "page_fragments", args.map(&:to_s))
-    mod = args.inject(PageFragments) do |klass, sub_klass|
-      klass.const_get(classify(sub_klass))
+    require File.join(args.map(&:to_s))
+    page = Page.new self
+    page_fragment = args
+                    .map(&:to_s)
+                    .map(&:camelize)
+                    .reduce(PageFragments) do |module_name, part|
+      module_name.const_get(part, false)
     end
-    page = Page.new(self).extend(mod)
-    page.browser.extend(DelegateSynchronize)
+    page = page.extend(page_fragment)
+    page.page.extend(DelegateSynchronize)
     yield page if block_given?
     page
   end

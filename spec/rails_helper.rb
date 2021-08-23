@@ -7,9 +7,11 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
 require "capybara/email/rspec"
-Dir["spec/support/**/*.rb"].each do |file|
-  require Rails.root.join(file).to_s
-end
+$LOAD_PATH << Rails.root.join("spec/support/page_fragments")
+Dir[
+  Rails.root.join(File.join("spec", "support", "**", "*.rb"))
+].reject { |f| f.include?("page_fragments/") }
+  .each { |f| require f }
 
 require "factory_bot"
 require "sidekiq/testing"

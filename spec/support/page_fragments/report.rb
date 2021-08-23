@@ -12,7 +12,7 @@ module PageFragments
     private
 
     def report
-      browser.find("section[data-testid=\"report\"]")
+      page.find("section[data-testid=\"report\"]")
     end
   end
 end
