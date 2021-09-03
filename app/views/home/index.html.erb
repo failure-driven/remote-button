@@ -26,7 +26,17 @@
       Demo software button
     </div>
     <div class="card-body">
-      <%= render partial: "demo_button" %>
+      <%= content_tag(
+        :div,
+        "",
+        data: {
+          app: "demo-button-app",
+          config: {
+            title: "Demo Button App"
+          }.to_json,
+        }
+      )%>
+      <%= javascript_pack_tag "demo_button_app" %>
     </div>
     <div class="card-footer" data-testid="footer">
       Note: other users may be interacting with this same button and affect the outcome.
