@@ -18,12 +18,12 @@ module PageFragments
     end
 
     def press
-      node.find("button").click
+      node.find("[data-testid=button]").click
     end
 
     def status
-      return "neutral" if node.find("button")["class"].include?("btn-primary")
-      return "active" if node.find("button")["class"].include?("btn-danger")
+      return "neutral" if node.find("[data-testid=button]")["class"].include?("btn-primary")
+      return "active" if node.find("[data-testid=button]")["class"].include?("btn-danger")
     end
 
     def message
