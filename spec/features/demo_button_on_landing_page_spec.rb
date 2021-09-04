@@ -25,8 +25,15 @@ feature "Demo button on landing page", js: true do
     end
 
     Then "the count is incremented by 1" do
-      pending "the count actually being registered"
       expect(focus_on(:demo_button).message).to eq("count 1")
+    end
+
+    When "they hit the button 4 more times" do
+      4.times { focus_on(:demo_button).press }
+    end
+
+    Then "the count is incremented to 5" do
+      expect(focus_on(:demo_button).message).to eq("count 5")
     end
   end
 

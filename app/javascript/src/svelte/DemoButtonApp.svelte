@@ -35,7 +35,6 @@
     on:click={() => setMode(Counter)}
     data-testid="mode-counter">counter</button
   >
-  <button class="btn btn-primary" data-testid="button">button</button>
   <main>
     <svelte:component this={component} {...props} />
   </main>
