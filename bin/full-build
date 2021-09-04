@@ -6,6 +6,8 @@ bundle install
 yarn
 
 yarn lint
+yarn check-format
+
 bundle exec rubocop
 
 bundle exec rspec

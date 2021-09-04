@@ -15,7 +15,7 @@
     "highcharts-react-official": "^3.0.0",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
-    "prettier": "^2.2.0",
+    "prettier": "^2.3.2",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -27,7 +27,7 @@
   "scripts": {
     "lint": "eslint --ext .js,.jsx,svelte app/javascript/",
     "check-format": "prettier --check app/javascript",
-    "format": "prettier-eslint app/javascript"
+    "format": "prettier --write app/javascript"
   },
   "version": "0.1.0",
   "devDependencies": {

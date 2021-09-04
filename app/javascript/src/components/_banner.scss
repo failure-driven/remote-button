@@ -24,8 +24,8 @@ $light-text: rgb(140, 188, 184);
   }
 }
 .banner::before,
-.banner::after{
-  content: '';
+.banner::after {
+  content: "";
   position: absolute;
   bottom: -70px;
   right: 0;

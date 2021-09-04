@@ -10,20 +10,20 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-import '../src/style.scss';
+import "../src/style.scss";
 
 // import DynamicBannerText from '../components/DynamicBannerText';
-import RandomQuoteGenerator from '../components/RandomQuoteGenerator';
-import DynamicProductCard from '../components/DynamicProductCard';
+import RandomQuoteGenerator from "../components/RandomQuoteGenerator";
+import DynamicProductCard from "../components/DynamicProductCard";
 
-require('@rails/ujs').start();
-require('turbolinks').start();
-require('@rails/activestorage').start();
+require("@rails/ujs").start();
+require("turbolinks").start();
+require("@rails/activestorage").start();
 /* eslint-disable import/no-unresolved */
-require('channels');
-require('bootstrap');
+require("channels");
+require("bootstrap");
 
-document.addEventListener('turbolinks:load', () => {
+document.addEventListener("turbolinks:load", () => {
   $(() => {
     $('[data-toggle="tooltip"]').tooltip();
     $('[data-toggle="popover"]').popover();

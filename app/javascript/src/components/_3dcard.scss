@@ -1,54 +1,54 @@
-.container-esp32{
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.container-esp32 {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.card-esp32{
-    transform-style: preserve-3d; /*use to push out text with z-index*/
-    min-height: 80vh;   
-    width: 18rem; /*fixed width*/
-   //border-radius: 30px;
-   // box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0px 0px 50px rgba(0, 0, 0, 0.2); /* 1. small blur :x TB blur color, 2. large blur */
-    display: flex;
-    align-items: center;
+.card-esp32 {
+  transform-style: preserve-3d; /*use to push out text with z-index*/
+  min-height: 80vh;
+  width: 18rem; /*fixed width*/
+  //border-radius: 30px;
+  // box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0px 0px 50px rgba(0, 0, 0, 0.2); /* 1. small blur :x TB blur color, 2. large blur */
+  display: flex;
+  align-items: center;
 }
-.body-perspective{
-    perspective: 1000px;
+.body-perspective {
+  perspective: 1000px;
 }
-.esp32{
-    min-height: 35vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* background-color: rosybrown; */
+.esp32 {
+  min-height: 35vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: rosybrown; */
 }
-.esp32 img{
- width: 20rem;
- z-index: 2; /*bring img to front*/
+.esp32 img {
+  width: 20rem;
+  z-index: 2; /*bring img to front*/
 }
-.circle{
-    width: 12rem;
-    height: 12rem;
-    background: linear-gradient(
-        to right,
+.circle {
+  width: 12rem;
+  height: 12rem;
+  background: linear-gradient(
+    to right,
     rgba(17, 98, 143, 0.75),
     rgba(215, 4, 50, 0.75)
-    );
-    /*position behind main image*/
-    position: absolute;
-    border-radius: 50%;
-    z-index: 1;
+  );
+  /*position behind main image*/
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
 }
-.info h1{
-    font-size: 3rem;
-    text-align: center;
+.info h1 {
+  font-size: 3rem;
+  text-align: center;
 }
-.info h3{
-    font-family: 'Courier Prime', monospace;
-    font-size: 1.3rem ;
-    padding-top: 25px;
-    color: rgb(140, 188, 184);
-    font-weight: lighter;
-    text-align: center;
+.info h3 {
+  font-family: "Courier Prime", monospace;
+  font-size: 1.3rem;
+  padding-top: 25px;
+  color: rgb(140, 188, 184);
+  font-weight: lighter;
+  text-align: center;
 }

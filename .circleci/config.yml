@@ -65,8 +65,8 @@ jobs:
 
       # Pre test
 
-      # - run: yarn lint
-
+      - run: yarn lint
+      - run: yarn check-format
       - run: bundle exec rubocop --config .rubocop.yml
 
       # Run the tests
