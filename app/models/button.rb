@@ -28,11 +28,11 @@ class Button < ApplicationRecord
   private
 
   def slot_time_events_night(start_hour, end_hour)
-    events.select { |s| s.created_at.hour >= start_hour || s.created_at.hour < end_hour }.count
+    events.count { |s| s.created_at.hour >= start_hour || s.created_at.hour < end_hour }
   end
 
   def slot_time_events_day(start_hour, end_hour)
-    events.select { |s| s.created_at.hour >= start_hour && s.created_at.hour < end_hour }.count
+    events.count { |s| s.created_at.hour >= start_hour && s.created_at.hour < end_hour }
   end
 
   def total_count
@@ -47,8 +47,8 @@ class Button < ApplicationRecord
   end
 
   def activity_by_day_dates
-    start_date = (Date.today - 60.days).beginning_of_week(:sunday)
-    (start_date..Date.today).to_a
+    start_date = (Time.zone.today - 60.days).beginning_of_week(:sunday)
+    (start_date..Time.zone.today).to_a
   end
 
   def bucket

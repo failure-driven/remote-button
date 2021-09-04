@@ -46,8 +46,8 @@ Webdrivers.cache_time = 1.month.to_i
 RSpec.configure do |config|
   config.after do |example|
     if (example.metadata[:type] == :feature) &&
-       example.metadata[:js] &&
-       example.exception.present?
+        example.metadata[:js] &&
+        example.exception.present?
       # Capybara::Screenshot.screenshot_and_open_image
     end
   end

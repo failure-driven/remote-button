@@ -9,7 +9,7 @@ def create_or_update(model_class, attributes)
 end
 
 desc "fake data"
-task fake_data: :environment do
+task fake_data: :environment do # rubocop:disable Metrics/BlockLength
   include Rails.application.routes.url_helpers
 
   [
@@ -21,14 +21,17 @@ task fake_data: :environment do
       events: lambda { |button|
                 return if button.events.count >= 365 * 100
 
-                ((Date.today - 1.year)..Date.today).each do |date|
+                ((Time.zone.today - 1.year)..Time.zone.today).each do |date|
                   hour_offset = 9.hours
                   (0..18).step(2).each do |minute_offset|
                     (0..9).each do |second_offset|
                       button
                         .events
                         .create(
-                          created_at: date.to_datetime + hour_offset + minute_offset.minutes + second_offset.seconds,
+                          created_at: date.to_datetime +
+                          hour_offset +
+                          minute_offset.minutes +
+                          second_offset.seconds,
                         )
                     end
                   end
@@ -38,11 +41,14 @@ task fake_data: :environment do
     {
       email: "random_10_sets_every_4_days_or_so@button.com",
       buttons: [
-        button_id: Digest::UUID.uuid_v5(Digest::UUID::DNS_NAMESPACE, "fake-button-random_10_sets_every_4_days_or_so"),
+        button_id: Digest::UUID.uuid_v5(Digest::UUID::DNS_NAMESPACE,
+          "fake-button-random_10_sets_every_4_days_or_so",),
       ],
       events: lambda { |button|
                 button.events.delete_all
-                every_4_days_or_so = ((Date.today - 3.months)..Date.today).map { |date| date + rand(4).days }
+                every_4_days_or_so = ((Time.zone.today - 3.months)..Time.zone.today).map do |date|
+                  date + rand(4).days
+                end
                 every_4_days_or_so.each do |date|
                   hour_offset = rand(7..22).hours # between 7am and 11pm
                   minute_offset = rand(30).minutes # between on the hour to half past the hour
@@ -73,10 +79,10 @@ task fake_data: :environment do
     {
       email: "all_the_buttons@button.com",
       buttons: [
-        { button_id: Digest::UUID.uuid_v5(Digest::UUID::DNS_NAMESPACE, "fake-button-all_the_buttons_01") },
-        { button_id: Digest::UUID.uuid_v5(Digest::UUID::DNS_NAMESPACE, "fake-button-all_the_buttons_02") },
-        { button_id: Digest::UUID.uuid_v5(Digest::UUID::DNS_NAMESPACE, "fake-button-all_the_buttons_03") },
-        { button_id: Digest::UUID.uuid_v5(Digest::UUID::DNS_NAMESPACE, "fake-button-all_the_buttons_04") },
+        {button_id: Digest::UUID.uuid_v5(Digest::UUID::DNS_NAMESPACE, "fake-button-all_the_buttons_01")},
+        {button_id: Digest::UUID.uuid_v5(Digest::UUID::DNS_NAMESPACE, "fake-button-all_the_buttons_02")},
+        {button_id: Digest::UUID.uuid_v5(Digest::UUID::DNS_NAMESPACE, "fake-button-all_the_buttons_03")},
+        {button_id: Digest::UUID.uuid_v5(Digest::UUID::DNS_NAMESPACE, "fake-button-all_the_buttons_04")},
       ],
     },
   ].each do |setup_data|

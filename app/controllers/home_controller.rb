@@ -5,10 +5,11 @@ class HomeController < ApplicationController
     @user = User.new(password: temp_password, password_confirmation: temp_password)
   end
 
-  def old_index; end
+  def old_index
+  end
 
   # TODO: move to own controller or check if flipper provides this already?
-  def enable_flip # rubocop:disable Metrics/AbcSize
+  def enable_flip
     begin
       unless signed_in?
         user = User.with_reset_password_token(params[:reset_token])

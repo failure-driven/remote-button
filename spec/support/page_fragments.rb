@@ -13,9 +13,9 @@ module PageFragments
     require File.join(args.map(&:to_s))
     page = Page.new self
     page_fragment = args
-                    .map(&:to_s)
-                    .map(&:camelize)
-                    .reduce(PageFragments) do |module_name, part|
+      .map(&:to_s)
+      .map(&:camelize)
+      .reduce(PageFragments) do |module_name, part|
       module_name.const_get(part, false)
     end
     page = page.extend(page_fragment)

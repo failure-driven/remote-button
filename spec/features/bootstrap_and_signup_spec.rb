@@ -164,9 +164,9 @@ feature "Bootstrap and signup", js: true do
           .find_all("tbody tr")
           .map { |tr| keys.zip(tr.find_all("td").map(&:text)).to_h.slice("Email") }
       end.to contain_exactly(
-        { "Email" => "lara.setrakian@newsdeeply.com" },
-        { "Email" => "carly.zakin@the.skimm.com" },
-        { "Email" => "jocelyn.leavitt@hopscotch.com" },
+        {"Email" => "lara.setrakian@newsdeeply.com"},
+        {"Email" => "carly.zakin@the.skimm.com"},
+        {"Email" => "jocelyn.leavitt@hopscotch.com"},
       )
     end
   end

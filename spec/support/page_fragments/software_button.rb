@@ -7,7 +7,7 @@ module PageFragments
           page.synchronize do
             page.find("section[data-testid=\"software-button\"] button")[:disabled] == "false"
           end
-          page.travel_to Time.now + every
+          page.travel_to Time.zone.now + every
         end
       end
     end

@@ -60,9 +60,9 @@ module Admin
 
     def generate_jwt_token_for(resource)
       JWT.encode({
-                   id: resource.id,
-                   exp: 1.days.from_now.to_i,
-                 }, Rails.application.secrets.secret_key_base,)
+        id: resource.id,
+        exp: 1.day.from_now.to_i,
+      }, Rails.application.secrets.secret_key_base,)
     end
   end
 end

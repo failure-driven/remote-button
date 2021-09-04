@@ -1,1 +1,1 @@
-QUOTES = YAML.load_file(File.join(Rails.root, "config", "initializers", "quotes.yml"))["quotes"]
+QUOTES = YAML.load_file(Rails.root.join("config/initializers/quotes.yml"))["quotes"]

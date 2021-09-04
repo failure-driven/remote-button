@@ -83,7 +83,7 @@ feature "Register Button and view results from pressing it", js: true, perform_e
           wait_for do
             page.find("section[data-testid=\"software-button\"] button")[:disabled]
           end.to eq "false"
-          travel_to Time.now + 1.minute
+          travel_to Time.zone.now + 1.minute
         end
       end
     end
@@ -93,9 +93,9 @@ feature "Register Button and view results from pressing it", js: true, perform_e
       wait_for do
         page.find_all("section[data-testid=\"events\"] li").map(&:text)
       end.to eq([
-                  Time.iso8601("2020-11-14T21:00:00").in_time_zone("UTC").to_s,
-                  Time.iso8601("2020-11-14T21:01:00").in_time_zone("UTC").to_s,
-                ])
+        Time.iso8601("2020-11-14T21:00:00").in_time_zone("UTC").to_s,
+        Time.iso8601("2020-11-14T21:01:00").in_time_zone("UTC").to_s,
+      ])
     end
   end
 
@@ -128,7 +128,8 @@ feature "Register Button and view results from pressing it", js: true, perform_e
       wait_for { @response.code }.to eq "422"
       wait_for { JSON.parse(@response.body) }.to eq(
         {
-          "error" => "Validation failed: Email can't be blank, Site can't be blank, External reference can't be blank",
+          "error" => "Validation failed: Email can't be blank, "\
+                     "Site can't be blank, External reference can't be blank",
         },
       )
     end
@@ -139,9 +140,9 @@ feature "Register Button and view results from pressing it", js: true, perform_e
       uri = URI(Capybara.current_session.server.base_url)
       @response = Net::HTTP.post_form(
         uri,
-        { "button[email]" => "m@m",
-          "button[site]" => Capybara.current_session.server.base_url,
-          "button[external_reference]" => "1234", },
+        {"button[email]" => "m@m",
+         "button[site]" => Capybara.current_session.server.base_url,
+         "button[external_reference]" => "1234",},
       )
     end
 

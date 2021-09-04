@@ -22,7 +22,7 @@ flipper_app = Flipper::UI.app(Flipper.instance) do |builder|
   end
 end
 
-Rails.application.routes.draw do
+Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   namespace :admin do
     resources :users do
       member do

@@ -5,9 +5,9 @@ class ButtonsController < ApplicationController
     @button = Button.new(button_params)
     @button.save!
     UserMailer.with(button: @button).button_registration.deliver_later
-    render json: { button_url: button_url(@button) }, status: :created
+    render json: {button_url: button_url(@button)}, status: :created
   rescue ActiveRecord::RecordInvalid => e
-    render json: { error: e.message }, status: :unprocessable_entity
+    render json: {error: e.message}, status: :unprocessable_entity
   end
 
   def show

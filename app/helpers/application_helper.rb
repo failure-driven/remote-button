@@ -11,23 +11,11 @@ module ApplicationHelper
   def flash_messages(_opts = {})
     flash.each do |msg_type, message|
       concat(
-        content_tag(
-          :div,
-          message,
-          class: "alert #{bootstrap_class_for(msg_type)}",
-          role: "alert",
-        ) do
-          concat content_tag(
-            :button,
-            "x",
-            class: "close",
-            data: { dismiss: "alert" },
-          )
-          concat content_tag(
-            :span,
-            message,
-            data: { testid: "message" },
-          )
+        tag.div(message, class: "alert #{bootstrap_class_for(msg_type)}",
+          role: "alert",) do
+          concat tag.button("x", class: "close",
+            data: {dismiss: "alert"},)
+          concat tag.span(message, data: {testid: "message"})
         end,
       )
     end
