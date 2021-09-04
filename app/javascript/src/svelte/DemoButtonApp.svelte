@@ -1,11 +1,17 @@
 <script>
+  import Reflex from "./Reflex.svelte";
+  import Timer from "./Timer.svelte";
+  import Counter from "./Counter.svelte";
   export let dataset;
   const {
     config: { title },
   } = dataset;
-  let mode = "reflex";
+
+  let component = Reflex;
+  let props = {};
+
   const setMode = (newMode) => {
-    mode = newMode;
+    component = newMode;
   };
 </script>
 
@@ -13,24 +19,26 @@
 <div data-testid="demo-button">
   <button
     class="btn"
-    class:active={mode == "reflex"}
-    on:click={() => setMode("reflex")}
+    class:active={component == Reflex}
+    on:click={() => setMode(Reflex)}
     data-testid="mode-reflex">reflex</button
   >
   <button
     class="btn"
-    class:active={mode == "timer"}
-    on:click={() => setMode("timer")}
+    class:active={component == Timer}
+    on:click={() => setMode(Timer)}
     data-testid="mode-timer">timer</button
   >
   <button
     class="btn"
-    class:active={mode == "counter"}
-    on:click={() => setMode("counter")}
+    class:active={component == Counter}
+    on:click={() => setMode(Counter)}
     data-testid="mode-counter">counter</button
   >
   <button class="btn btn-primary" data-testid="button">button</button>
-  <div data-testid="message">reflex test started</div>
+  <main>
+    <svelte:component this={component} {...props} />
+  </main>
 </div>
 
 <style>

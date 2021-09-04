@@ -17,7 +17,6 @@ feature "Demo button on landing page", js: true do
 
     Then "the selected mode is counter" do
       expect(focus_on(:demo_button).mode).to eq("counter")
-      pending "the message to match that of the mode"
       expect(focus_on(:demo_button).message).to eq("count 0")
     end
 
@@ -26,6 +25,7 @@ feature "Demo button on landing page", js: true do
     end
 
     Then "the count is incremented by 1" do
+      pending "the count actually being registered"
       expect(focus_on(:demo_button).message).to eq("count 1")
     end
   end
