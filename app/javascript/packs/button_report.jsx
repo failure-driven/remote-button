@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Report from '../src/report';
+import Report from '../src/report.jsx';
 
 document.addEventListener('turbolinks:load', () => {
   const node = document.getElementById('button-report');

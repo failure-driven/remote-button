@@ -25,17 +25,20 @@
     "typed.js": "^2.0.11"
   },
   "scripts": {
-    "lint": "eslint --ext .js --ext .jsx app/javascript/",
-    "format": "prettier-eslint app/javascript/**/*{js,jsx}"
+    "lint": "eslint --ext .js,.jsx,svelte app/javascript/",
+    "check-format": "prettier --check app/javascript",
+    "format": "prettier-eslint app/javascript"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "eslint": "^7.14.0",
+    "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-svelte3": "^3.2.0",
+    "prettier-eslint": "^13.0.0",
     "webpack-dev-server": "^3.11.0"
   }
 }
