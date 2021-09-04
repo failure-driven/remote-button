@@ -1,6 +1,35 @@
 require "rails_helper"
 
 feature "Demo button on landing page", js: true do
+  scenario "A user form the internet can change the demo button between various modes" do
+    Given "the demo button has 3 modes" do
+      page.visit root_path
+      expect(focus_on(:demo_button).modes).to contain_exactly(*%w[reflex counter timer])
+    end
+
+    And "the default mode is set to reflex timer" do
+      expect(focus_on(:demo_button).mode).to eq("reflex")
+    end
+
+    When "the user changes to counter mode" do
+      focus_on(:demo_button).change_mode("counter")
+    end
+
+    Then "the selected mode is counter" do
+      pending "the mode to actually change to counter"
+      expect(focus_on(:demo_button).mode).to eq("counter")
+      expect(focus_on(:demo_button).message).to eq("count 0")
+    end
+
+    When "they hit the button" do
+      focus_on(:demo_button).press
+    end
+
+    Then "the count is incremented by 1" do
+      expect(focus_on(:demo_button).message).to eq("count 1")
+    end
+  end
+
   scenario "A user from the internet sees a demo button on the landing page" do
     When "A user from the internt visits the landing page" do
       page.visit root_path

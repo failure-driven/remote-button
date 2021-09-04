@@ -11,6 +11,12 @@ module PageFragments
       &.text
     end
 
+    def change_mode(new_mode)
+      node
+        .find("[data-testid|=mode]", text: new_mode)
+        .click
+    end
+
     def press
       node.find("button").click
     end
