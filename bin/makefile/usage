@@ -15,7 +15,7 @@ _usage() {
   echo
   echo -e "${YELLOW}make setup${NC}           runs bin/setup to setup the project"
   echo
-  echo -e "${YELLOW}make prettier${NC}        rubocop any modified files"
+  echo -e "${YELLOW}make prettier${NC}        rubocop and yarn lint any modified files"
   echo -e "${YELLOW}make rubocop-fix-all${NC} rubocop and auto-correct all files"
   echo -e "${YELLOW}make build${NC}           run linting and full build"
   echo

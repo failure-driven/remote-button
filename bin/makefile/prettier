@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+require_relative "changes"
+
+rubocop_changes = Changes.all.filter do |file|
+  return false if file == "db/schema.rb"
+
+  file.end_with?(".rb", ".rake", ".jbuilder")
+end
+
+if rubocop_changes.empty?
+  puts "There are no modified .rb files"
+else
+  all_changes = rubocop_changes.join(" ")
+  puts "Fixing: #{all_changes}"
+  system "bundle exec rubocop -a #{all_changes}"
+end
+
+node_changes = Changes.all.filter do |file|
+  file.end_with?(".js", ".jsx", ".svelte")
+end
+
+if node_changes.empty?
+  puts "There are no modified .js, .jsx or .svelte files"
+else
+  all_changes = node_changes.join(" ")
+  puts "Fixing: #{all_changes}"
+  system "yarn format"
+  system "npx eslint --fix #{all_changes}"
+end

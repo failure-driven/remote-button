@@ -22,7 +22,7 @@ rubocop-fix-all:
 	bundle exec rubocop -a .
 
 prettier:
-	bin/makefile/prettier-ruby
+	bin/makefile/prettier
 
 .PHONY: build
 build:

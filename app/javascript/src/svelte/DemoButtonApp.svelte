@@ -1,6 +1,6 @@
 <script>
   export let dataset;
-  const { config: { title } } = dataset;
+  const { config: { title } } = dataset
 </script>
 
 <style>
