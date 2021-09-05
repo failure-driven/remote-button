@@ -57,7 +57,7 @@ feature "Register Button and view results from pressing it", js: true, perform_e
     Then "Sam is taken to the button page" do
       wait_for do
         page.find("h1").text
-      end.to eq "Button #{Button.first.external_reference}"
+      end.to eq "Button #{Button.where(email: "sam@button.com").first.external_reference}"
       # TODO: configure the mode to be COUNTER
       # TODO: we should set the timezone based on the users browser?
       # TODO: this should actually confirm registration - maybe we use devise
