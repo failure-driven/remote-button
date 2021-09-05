@@ -40,7 +40,7 @@ feature "Demo button on landing page", js: true do
       focus_on(:demo_button).change_mode("reflex")
       expect(focus_on(:demo_button).mode).to eq("reflex")
       focus_on(:demo_button).change_mode("counter")
-      expect(focus_on(:demo_button).mode).to eq("reflex")
+      expect(focus_on(:demo_button).mode).to eq("counter")
     end
 
     Then "the count is still the same 5" do
