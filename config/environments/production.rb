@@ -129,4 +129,8 @@ Rails.application.configure do # rubocop:disable Metrics/BlockLength
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  config.demo_button = {}
+  config.demo_button[:email] = "saramic@gmail.com"
+  config.demo_button[:site] = ENV.fetch("APP_URL")
 end

@@ -57,4 +57,8 @@ Rails.application.configure do
 
   # don't use sidekiq to keep testing "real" emails
   config.active_job.queue_adapter = :test
+
+  config.demo_button = {}
+  config.demo_button[:email] = "from+test@example.com"
+  config.demo_button[:site] = "http://localhost:3001"
 end

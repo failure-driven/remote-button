@@ -7,3 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 System::Mode.setup_modes
+System::DemoButton.setup

@@ -69,4 +69,8 @@ Rails.application.configure do # rubocop:disable Metrics/BlockLength
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  config.demo_button = {}
+  config.demo_button[:email] = "saramic@gmail.com"
+  config.demo_button[:site] = "http://localhost:3000"
 end

@@ -41,6 +41,7 @@ echo "Updating heroku environment variables"
 # from Heroku after deployment. Otherwise the old variables will hang around in Heroku.
 heroku config:add \
   RAILS_MASTER_KEY="$RAILS_MASTER_KEY" \
+  APP_URL="https://${HEROKU_APP_NAME}.herokuapp.com" \
   > /dev/null
 
 echo "Performing heroku deployment"
@@ -49,6 +50,9 @@ git push --force heroku main
 
 echo "Performing database migrations"
 heroku run --exit-code bin/rake db:migrate
+
+echo "Running database seeds"
+heroku run --exit-code bin/rake db:seed
 
 # changing web scale will automatically scale heroku web servers out/up
 #echo "Scaling web and worker process types"
