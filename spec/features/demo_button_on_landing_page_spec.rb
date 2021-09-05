@@ -35,6 +35,18 @@ feature "Demo button on landing page", js: true do
     Then "the count is incremented to 5" do
       expect(focus_on(:demo_button).message).to eq("count 5")
     end
+
+    When "they select reflex and go back to counter" do
+      focus_on(:demo_button).change_mode("reflex")
+      expect(focus_on(:demo_button).mode).to eq("reflex")
+      focus_on(:demo_button).change_mode("counter")
+      expect(focus_on(:demo_button).mode).to eq("reflex")
+    end
+
+    Then "the count is still the same 5" do
+      pending "the button being the demo button on the server"
+      expect(focus_on(:demo_button).message).to eq("count 5")
+    end
   end
 
   scenario "A user from the internet sees a demo button on the landing page" do
