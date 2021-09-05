@@ -25,6 +25,7 @@ feature "Demo button on landing page", js: true do
     end
 
     Then "the count is incremented by 1" do
+      expect(page).to have_content("count 1")
       expect(focus_on(:demo_button).message).to eq("count 1")
     end
 
@@ -33,6 +34,7 @@ feature "Demo button on landing page", js: true do
     end
 
     Then "the count is incremented to 5" do
+      expect(page).to have_content("count 5")
       expect(focus_on(:demo_button).message).to eq("count 5")
     end
 
@@ -44,7 +46,6 @@ feature "Demo button on landing page", js: true do
     end
 
     Then "the count is still the same 5" do
-      pending "the button being the demo button on the server"
       expect(focus_on(:demo_button).message).to eq("count 5")
     end
   end

@@ -4,11 +4,11 @@
   import Counter from "./Counter.svelte";
   export let dataset;
   const {
-    config: { title },
+    config: { title, demoButtonId },
   } = dataset;
 
   let component = Reflex;
-  let props = {};
+  let props = { demoButtonId };
 
   const setMode = (newMode) => {
     component = newMode;

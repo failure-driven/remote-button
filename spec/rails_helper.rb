@@ -76,4 +76,8 @@ RSpec.configure do |config|
   # predictable host and port for email links
   Capybara.server_port = 3001
   Capybara.server_host = "localhost"
+
+  config.before(:each, type: :feature) do
+    Rails.application.load_seed
+  end
 end

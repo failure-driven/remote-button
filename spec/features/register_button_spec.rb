@@ -148,9 +148,10 @@ feature "Register Button and view results from pressing it", js: true, perform_e
 
     Then "I get a json response with success and status 201 successfully created" do
       wait_for { @response.code }.to eq "201"
+      button_id = Button.find_by(external_reference: "1234").id
       wait_for { JSON.parse(@response.body) }.to eq(
         {
-          "button_url" => "#{Capybara.current_session.server.base_url}/buttons/#{Button.first.id}",
+          "button_url" => "#{Capybara.current_session.server.base_url}/buttons/#{button_id}",
         },
       )
     end
