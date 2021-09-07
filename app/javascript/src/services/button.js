@@ -2,7 +2,7 @@ const SERVER_URL = process.env.API_HOST_URL || "http://localhost:3000";
 
 const getButton = ({ buttonId }) => {
   return buttonAction({
-    actino: "GET",
+    action: "GET",
     url: `${SERVER_URL}/buttons/${buttonId}.json`,
   });
 };
