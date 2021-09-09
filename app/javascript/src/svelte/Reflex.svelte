@@ -18,6 +18,7 @@
   const reflexTimeout = () => {
     ready = 0;
     resetMessage = `button reset -- Took to long :| `;
+    timerRunning = false;
   };
 
   const resetButton = (message) => {
@@ -71,6 +72,7 @@
       //
       clearTimeout(timer);
       resetMessage = "error went to early";
+      timerRunning = false;
       setTimeout(() => {
         resetButton("get movin");
       }, 3000);
