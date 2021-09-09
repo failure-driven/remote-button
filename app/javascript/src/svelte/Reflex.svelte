@@ -3,15 +3,18 @@
   // import ready from "../stores/";
   export let demoButtonId;
 
-  let ready = 0;
-  let time = 1000;
-  // let primary = "btn btn-danger";
-  // initial message
+  // initial message / state
   let resetMessage = "almost time to boggie";
+  let ready = 0;
 
+  // timer vars
+  let time = 1000;
   let timer;
   let nestedTimer;
+  let timerRunning = false;
+  let startTime, endTime;
 
+  // login functions
   const reflexTimeout = () => {
     ready = 0;
     resetMessage = `button reset -- Took to long :| `;
@@ -22,25 +25,43 @@
     resetMessage = `button reset -- ${message}`;
   };
 
+  const reflextTimerBase = (time) => {
+    // let startTime, endTime
+
+    // console.log(startTime);
+    if (timerRunning) {
+      // set finish time
+      endTime = time;
+      // get starttime
+      let result = startTime - endTime;
+      timerRunning = false;
+
+      var seconds = result * -1;
+      console.log(seconds + " milli seconds");
+      return seconds;
+    } else {
+      //
+      timerRunning = true;
+      startTime = time;
+    }
+  };
+
   const changeReflexState = () => {
     // pressButton({ buttonId: demoButtonId })
     //   .then(() => getButton({ buttonId: demoButtonId }))
-    //
-    //
-    //
+
     // TODO:
-    // timer for reset sate || 3 clicks || long keydown ||
-    //
-    // readystate 2 time == work out the 'actual' reflex and dispay in ms
     // state?  Svelt stores || xState lib
-    //
 
     if (ready === 0) {
-      resetMessage = "reflex test started";
+      resetMessage = "  Wait for RED...";
       ready = 1;
-      // reflex waiting state fucntion ( split them up)
+
       timer = setTimeout(() => {
         ready = 2; // red
+        // timer starts here
+        reflextTimerBase(new Date());
+        //
         resetMessage = "I'm Red CLICK ME !!";
         // reset after 4 secs
         nestedTimer = setTimeout(reflexTimeout, 4000);
@@ -55,11 +76,11 @@
       }, 3000);
     } else if (ready === 2) {
       clearTimeout(nestedTimer);
-      // resetMessage = "Success :)";
-      // TODO:
-      // working out time here and pass to args of resetButton
+      // end timer HERE
       //
-      resetButton("Success :) your time XXms -- Play again");
+      let result = reflextTimerBase(new Date());
+      //
+      resetButton(`Success :) your time ${result} milli seconds`);
     }
   };
 </script>
