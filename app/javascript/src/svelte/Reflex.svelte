@@ -41,7 +41,7 @@
       // reflex waiting state fucntion ( split them up)
       timer = setTimeout(() => {
         ready = 2; // red
-
+        resetMessage = "I'm Red CLICK ME !!";
         // reset after 4 secs
         nestedTimer = setTimeout(reflexTimeout, 4000);
       }, time);
