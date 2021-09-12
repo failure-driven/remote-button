@@ -23,7 +23,8 @@ module PageFragments
 
     def status
       return "neutral" if node.find("[data-testid=button]")["class"].include?("btn-primary")
-      return "active" if node.find("[data-testid=button]")["class"].include?("btn-danger")
+      return "active" if node.find("[data-testid=button]")["class"].include?("btn-warning")
+      return "ready" if node.find("[data-testid=button]")["class"].include?("btn-danger")
     end
 
     def message

@@ -127,4 +127,44 @@ feature "Demo button on landing page", js: true do
       expect(focus_on(:demo_button).message).to eq("reflex test has timed out")
     end
   end
+
+  scenario "The timer demo button creates a timer" do
+    Given "a user sets the demo button to be in timer mode" do
+      page.visit root_path
+      focus_on(:demo_button).change_mode("timer")
+    end
+
+    Then "the selected mode is a 5 second timer" do
+      expect(focus_on(:demo_button).mode).to eq("timer")
+      expect(focus_on(:demo_button).message).to eq("5 second timer ready")
+      expect(focus_on(:demo_button).status).to eq("neutral")
+    end
+
+    When "they hit the button" do
+      focus_on(:demo_button).press
+    end
+
+    Then "the timer is in progress" do
+      expect(focus_on(:demo_button).status).to eq("active")
+      expect(focus_on(:demo_button).message).to match(/\d+ of 5 seconds remaining/)
+    end
+
+    When "they wait the prescribed time of 5 seconds" do
+      expect(page).to have_content("timer done", wait: 6)
+    end
+
+    Then "the timer informs the user it is done" do
+      expect(focus_on(:demo_button).status).to eq("ready")
+      expect(focus_on(:demo_button).message).to eq("5 second timer done")
+    end
+
+    When "they hit the button again" do
+      focus_on(:demo_button).press
+    end
+
+    Then "the timer is reset" do
+      expect(focus_on(:demo_button).status).to eq("neutral")
+      expect(focus_on(:demo_button).message).to eq("5 second timer ready")
+    end
+  end
 end
