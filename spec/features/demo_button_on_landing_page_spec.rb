@@ -86,6 +86,7 @@ feature "Demo button on landing page", js: true do
     end
 
     Then "it changes colour and a new reflex test begins" do
+      expect(page).to have_content("reflex test started")
       pending "the button being pressed to put it into active mode"
       expect(focus_on(:demo_button).status).to eq("active")
       expect(focus_on(:demo_button).message).to eq("reflex test started")
@@ -93,9 +94,11 @@ feature "Demo button on landing page", js: true do
 
     When "they hit it again" do
       focus_on(:demo_button).press
+      binding.pry
     end
 
     Then "they get a warning too early" do
+      expect(page).to have_content("too early")
       expect(focus_on(:demo_button).message).to eq("too early")
     end
 
