@@ -4,52 +4,39 @@
   const timer = {
     duration: 5000, // TODO: should come from server/configuration
     // elapsed: 0, // TODO: in future elapsed would also be tracked on server?
-    ready: 0, // TODO: change these to worded states
+    state: "neutral",
     timerRunning: false,
     reflexStartTime: 0,
     reflexEndTime: 0,
     reflexStartDelay: 3000,
-    reflexStart: undefined, // this is a function
-    reflexStartReset: undefined, // this is a function
+    reflexTimerStart: undefined, // this is a function
+    reflexTimerStartReset: undefined, // this is a function
     reflexTimerTimeout: 2000,
     triggeredResetTimeout: 1800,
-    lastReflexResult: undefined,
-  };
 
-  const states = {
-    neutral: {
-      message: (timer) => `${timer.duration / 1000} second timer ready`,
-      current: false,
-    },
-    triggered: {
-      message: (timer) =>
-        `${parseFloat(timer.elapsed / 1000).toPrecision(2)} of ${
-          timer.duration / 1000
-        } seconds remaining`,
-      current: false,
-    },
-    active: {
-      message: (timer) => `${timer.duration / 1000} second timer done`,
-      current: false,
+    messages: {
+      reflexInitialMessage: "Press to Start",
+      reflexTriggered: "Wait for RED...",
+      reflexActive: "Click Me Now",
+      reflexExpire: "Took to long",
+      reflextEarly: "Error went to early",
+      reflexReset: "Press Again",
+      reflexSucces: (result) => `Success :) your time ${result} milli seconds`,
     },
   };
 
-  let resetMessage = "almost time to boggie";
+  let resetMessage = timer.messages.reflexInitialMessage;
 
   const resetButton = (message) => {
-    timer.ready = 0;
-    resetMessage = `button reset -- ${message}`;
+    timer.state = "neutral";
+    resetMessage = `button reset - ${message}`;
     timer.timerRunning = false;
   };
 
   const reflextTimerBase = (time) => {
-    // let startTime, endTime
-
-    // console.log(startTime);
     if (timer.timerRunning) {
-      // set finish time
       timer.reflexEndTime = time;
-      // get starttime
+
       let result = timer.reflexStartTime - timer.reflexEndTime;
       timer.timerRunning = false;
 
@@ -57,57 +44,76 @@
       console.log(seconds + " milli seconds");
       return seconds;
     } else {
-      //
       timer.timerRunning = true;
       timer.reflexStartTime = time;
     }
   };
 
-  const changeReflexState = () => {
-    if (timer.ready === 0) {
-      resetMessage = "  Wait for RED...";
-      timer.ready = 1;
+  const reflexTestBegins = () => {
+    resetMessage = timer.messages.reflexTriggered;
 
-      timer.reflexStart = setTimeout(() => {
-        timer.ready = 2; // red
-        // timer starts here
-        reflextTimerBase(new Date());
-        //
-        resetMessage = "reflex test started";
-        // reset after 4 secs
-        // TODO : tidy below
-        timer.reflexStartReset = setTimeout(
-          () => resetButton("Took to long :|"),
-          timer.reflexTimerTimeout
-        );
-      }, timer.reflexStartDelay);
-    } else if (timer.ready === 1) {
-      // kill timeouts
+    timer.state = "triggered";
+
+    timer.reflexTimerStart = setTimeout(() => {
+      timer.state = "active";
+      reflextTimerBase(new Date());
       //
-      clearTimeout(timer.reflexStart);
+      resetMessage = timer.messages.reflexActive;
 
-      resetMessage = "error went to early";
+      timer.reflexTimerStartReset = setTimeout(
+        () => resetButton(timer.messages.reflexExpire),
+        timer.reflexTimerTimeout
+      );
+    }, timer.reflexStartDelay);
+  };
 
-      timer.timerRunning = false;
-      setTimeout(() => {
-        resetButton("get movin");
-      }, timer.triggeredResetTimeout);
-    } else if (timer.ready === 2) {
-      clearTimeout(timer.reflexStartReset);
+  const reflexTooEarlyCleanup = () => {
+    clearTimeout(timer.reflexTimerStart);
 
-      let result = reflextTimerBase(new Date());
+    resetMessage = timer.messages.reflextEarly;
 
-      resetButton(`Success :) your time ${result} milli seconds`);
+    timer.timerRunning = false;
+    setTimeout(() => {
+      resetButton(timer.messages.reflexReset);
+    }, timer.triggeredResetTimeout);
+  };
+
+  const reflexResultHandler = () => {
+    clearTimeout(timer.reflexTimerStartReset);
+
+    let result = reflextTimerBase(new Date());
+
+    resetButton(timer.messages.reflexSucces(result));
+  };
+
+  const buttonClick = () => {
+    switch (timer.state) {
+      case "neutral": {
+        reflexTestBegins();
+        break;
+      }
+      case "triggered": {
+        reflexTooEarlyCleanup();
+        break;
+      }
+      case "active": {
+        reflexResultHandler();
+        break;
+      }
+      default: {
+        // TODO: deal with allowing an in progress timer to be reset with a double click?
+        console.log("NOT Supported");
+      }
     }
   };
 </script>
 
 <button
   class="btn btn-primary my-1"
-  on:click={changeReflexState}
-  class:state-neutral={timer.ready === 0}
-  class:state-triggered={timer.ready === 1}
-  class:state-active={timer.ready === 2}
+  on:click={buttonClick}
+  class:state-neutral={timer.state === "neutral"}
+  class:state-triggered={timer.state === "triggered"}
+  class:state-active={timer.state === "active"}
   data-testid="button">button</button
 >
 <div data-testid="message">
