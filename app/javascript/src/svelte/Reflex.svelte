@@ -9,17 +9,17 @@
     reflexStartTime: 0,
     reflexEndTime: 0,
     reflexStartDelay: 3000,
-    reflexTimerStart: undefined, // this is a function
-    reflexTimerStartReset: undefined, // this is a function
-    reflexTimerTimeout: 2000,
+    reflexTimerStart: undefined, // this is a timer
+    reflexTimerStartReset: undefined, // this is a timer
+    reflexTimerTimeout: 4000,
     triggeredResetTimeout: 1800,
 
     messages: {
       reflexInitialMessage: "Press to Start",
-      reflexTriggered: "Wait for RED...",
-      reflexActive: "Click Me Now",
-      reflexExpire: "Took to long",
-      reflextEarly: "Error went to early",
+      reflexTriggered: "wait to turn active", // wait to turn Red
+      reflexActive: "reflex test started",
+      reflexExpire: "took to long",
+      reflextEarly: "too early",
       reflexReset: "Press Again",
       reflexSucces: (result) => `Success :) your time ${result} milli seconds`,
     },
