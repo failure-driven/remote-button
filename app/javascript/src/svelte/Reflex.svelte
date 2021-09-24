@@ -2,26 +2,25 @@
   export let demoButtonId;
 
   const timer = {
-    duration: 5000, // TODO: should come from server/configuration
-    // elapsed: 0, // TODO: in future elapsed would also be tracked on server?
     state: "neutral",
     timerRunning: false,
     reflexStartTime: 0,
     reflexEndTime: 0,
-    reflexStartDelay: 3000,
+    reflexStartDelay: 1500,
     reflexTimerStart: undefined, // this is a timer
     reflexTimerStartReset: undefined, // this is a timer
-    reflexTimerTimeout: 4000,
-    triggeredResetTimeout: 1800,
+    reflexResetState: false,
+    reflexTimerTimeout: 3000,
+    triggeredResetTimeout: 0,
 
     messages: {
       reflexInitialMessage: "Press to Start",
       reflexTriggered: "wait to turn active", // wait to turn Red
       reflexActive: "reflex test started",
-      reflexExpire: "took to long",
+      reflexExpire: "reflex test has timed out",
       reflextEarly: "too early",
       reflexReset: "Press Again",
-      reflexSucces: (result) => `Success :) your time ${result} milli seconds`,
+      reflexSucces: (result) => `your reflex was ${result}ms`,
     },
   };
 
@@ -29,19 +28,17 @@
 
   const resetButton = (message) => {
     timer.state = "neutral";
-    resetMessage = `button reset - ${message}`;
+    resetMessage = `${message}`;
     timer.timerRunning = false;
   };
 
   const reflextTimerBase = (time) => {
     if (timer.timerRunning) {
       timer.reflexEndTime = time;
-
       let result = timer.reflexStartTime - timer.reflexEndTime;
       timer.timerRunning = false;
-
       var seconds = result * -1;
-      console.log(seconds + " milli seconds");
+
       return seconds;
     } else {
       timer.timerRunning = true;
@@ -51,13 +48,13 @@
 
   const reflexTestBegins = () => {
     resetMessage = timer.messages.reflexTriggered;
-
     timer.state = "triggered";
 
     timer.reflexTimerStart = setTimeout(() => {
       timer.state = "active";
+
       reflextTimerBase(new Date());
-      //
+
       resetMessage = timer.messages.reflexActive;
 
       timer.reflexTimerStartReset = setTimeout(
@@ -67,15 +64,19 @@
     }, timer.reflexStartDelay);
   };
 
-  const reflexTooEarlyCleanup = () => {
+  const reflexTooEarlyCleanup = (event) => {
     clearTimeout(timer.reflexTimerStart);
 
-    resetMessage = timer.messages.reflextEarly;
-
-    timer.timerRunning = false;
-    setTimeout(() => {
-      resetButton(timer.messages.reflexReset);
-    }, timer.triggeredResetTimeout);
+    if (timer.reflexResetState) {
+      timer.reflexResetState = !timer.reflexResetState;
+      setTimeout(() => {
+        reflexTestBegins();
+      }, timer.triggeredResetTimeout);
+    } else {
+      timer.reflexResetState = !timer.reflexResetState;
+      resetMessage = timer.messages.reflextEarly;
+      timer.timerRunning = false;
+    }
   };
 
   const reflexResultHandler = () => {
@@ -87,6 +88,7 @@
   };
 
   const buttonClick = () => {
+    console.log(timer.state);
     switch (timer.state) {
       case "neutral": {
         reflexTestBegins();
@@ -96,6 +98,7 @@
         reflexTooEarlyCleanup();
         break;
       }
+
       case "active": {
         reflexResultHandler();
         break;

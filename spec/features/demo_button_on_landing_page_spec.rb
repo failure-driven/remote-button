@@ -86,8 +86,6 @@ feature "Demo button on landing page", js: true do
     end
 
     Then "it changes colour and a new reflex test begins" do
-      # binding.pry
-
       expect(page).to have_content("wait to turn active")
       pending "the button being pressed to put it into triggered mode"
       expect(focus_on(:demo_button).status).to eq("triggered")
@@ -96,7 +94,6 @@ feature "Demo button on landing page", js: true do
 
     When "they hit it again" do
       focus_on(:demo_button).press
-      # binding.pry
     end
 
     Then "they get a warning too early" do
@@ -106,20 +103,22 @@ feature "Demo button on landing page", js: true do
 
     When "they press the button to start a new reflex test" do
       focus_on(:demo_button).press
-      expect(focus_on(:demo_button).message).to eq("reflex test started")
+      expect(focus_on(:demo_button).message).to eq("wait to turn active")
     end
 
     And "they wait till it changes colour before hitting it" do
+      expect(page).to have_content("reflex test started", wait: 3)
       expect(focus_on(:demo_button).status).to eq("active")
     end
 
     Then "they are informed of their reflex speed" do
+      focus_on(:demo_button).press
       expect(focus_on(:demo_button).message).to match(/your reflex was \d+ms/)
     end
 
     When "they press the button to start a new reflex test" do
       focus_on(:demo_button).press
-      expect(focus_on(:demo_button).message).to eq("reflex test started")
+      expect(focus_on(:demo_button).message).to eq("wait to turn active")
     end
 
     And "allow it to time out in 4 seconds" do
