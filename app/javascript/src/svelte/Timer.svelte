@@ -57,7 +57,6 @@
   };
 </script>
 
-<div data-testid="message">time 00:00</div>
 <!-- TODO: move this down to the primary component -->
 <button
   on:click={buttonClick}
